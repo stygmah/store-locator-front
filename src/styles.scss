@@ -36,4 +36,9 @@ a:focus{
     box-shadow: $inputShadow;
 }
 
+.btn-primary:disabled, .btn-block:disabled {
+    background-color: $light;
+    border-color: $light;
+}
+
 

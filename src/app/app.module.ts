@@ -19,6 +19,7 @@ import { AccountComponent } from './components/dashboard/main-view/account/accou
 import { HelpComponent } from './components/dashboard/main-view/help/help.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CredentialsComponent } from './components/credentials/credentials.component';
+import { AlertComponent } from './components/common/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CredentialsComponent } from './components/credentials/credentials.compo
     AccountComponent,
     HelpComponent,
     NotFoundComponent,
-    CredentialsComponent
+    CredentialsComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
