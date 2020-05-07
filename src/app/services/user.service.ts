@@ -12,8 +12,8 @@ export class UserService {
         return this.http.get<User[]>(`${environment.baseUrl}/users`);
     }
 
-    getById(id: number) {
-        return this.http.get(`${environment.baseUrl}/users/${id}`);
+    getById(email: string) {
+        return this.http.get(`${environment.baseUrl}/users/${email}`);
     }
 
     register(user: User) {
@@ -21,10 +21,14 @@ export class UserService {
     }
 
     update(user: User) {
-        return this.http.put(`${environment.baseUrl}/users/${user.id}`, user);
+        return this.http.put(`${environment.baseUrl}/users/${user.email}`, user);
     }
 
     delete(id: number) {
         return this.http.delete(`${environment.baseUrl}/users/${id}`);
+    }
+
+    resetPassword(email: any) {
+        return this.http.post(`${environment.baseUrl}/users/reset-password`, email);
     }
 }
