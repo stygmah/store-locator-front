@@ -1,6 +1,6 @@
 @import 'vars.scss';
 
-html{
+body{
     background-color: $base;
 }
 
@@ -36,9 +36,22 @@ a:focus{
     box-shadow: $inputShadow;
 }
 
+.form-control:focus {
+    border-color: $dark;
+}
+
 .btn-primary:disabled, .btn-block:disabled {
     background-color: $light;
     border-color: $light;
 }
 
+.spinner-border{
+    color: $base;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
 
+.error-msg{
+    color: $error;
+    margin-bottom: 10px;
+}

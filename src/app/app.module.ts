@@ -20,6 +20,7 @@ import { HelpComponent } from './components/dashboard/main-view/help/help.compon
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CredentialsComponent } from './components/credentials/credentials.component';
 import { AlertComponent } from './components/common/alert/alert.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AlertComponent } from './components/common/alert/alert.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
