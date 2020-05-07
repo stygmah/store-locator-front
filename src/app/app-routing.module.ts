@@ -14,6 +14,7 @@ import { SettingsComponent } from './components/dashboard/main-view/settings/set
 import { HelpComponent } from './components/dashboard/main-view/help/help.component';
 import { AccountComponent } from './components/dashboard/main-view/account/account.component';
 import { CredentialsComponent } from './components/credentials/credentials.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -29,7 +30,9 @@ const routes: Routes = [
       { path: 'settings', component: SettingsComponent},
       { path: 'help', component: HelpComponent},
       { path: 'account', component: AccountComponent},
-    ]
+    ],
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard]
   },
   {
     path: 'login',

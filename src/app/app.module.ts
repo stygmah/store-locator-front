@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,10 +21,12 @@ import { HelpComponent } from './components/dashboard/main-view/help/help.compon
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CredentialsComponent } from './components/credentials/credentials.component';
 import { AlertComponent } from './components/common/alert/alert.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './helpers/auth.interceptor';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
-  declarations: [
+declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
@@ -41,14 +44,21 @@ import { HttpClientModule } from '@angular/common/http';
     NotFoundComponent,
     CredentialsComponent,
     AlertComponent
-  ],
-  imports: [
+],
+imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+],
+providers: [
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true,
+    },
+    AuthGuard
+],
+bootstrap: [AppComponent]
 })
 export class AppModule { }
