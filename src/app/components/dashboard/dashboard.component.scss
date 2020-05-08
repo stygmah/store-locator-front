@@ -1,5 +1,10 @@
+@import '../../../vars.scss';
+
 
 .main-view{
-    margin-left: 250px;/*Change for menu width var*/
+    margin-left: $menu-bar-size;/*Change for menu width var*/
     height: 100%;
+    padding-top: 80px;
+
 }
+

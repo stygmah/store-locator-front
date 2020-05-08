@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-menu',
@@ -7,13 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideMenuComponent implements OnInit {
 
-  constructor() { }
+    constructor(private authservice: AuthService, private router: Router) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  logout() {
-      console.log('logout');
-  }
+    logout() {
+        console.log('d');
+        this.authservice.logout();
+        this.router.navigate(['/login']);
+    }
 
 }

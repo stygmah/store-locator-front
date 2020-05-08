@@ -15,40 +15,54 @@ import { HelpComponent } from './components/dashboard/main-view/help/help.compon
 import { AccountComponent } from './components/dashboard/main-view/account/account.component';
 import { CredentialsComponent } from './components/credentials/credentials.component';
 import { AuthGuard } from './guards/auth.guard';
+import { GeneralComponent } from './components/dashboard/main-view/account/general/general.component';
+import { BillingInfoComponent } from './components/dashboard/main-view/account/billing-info/billing-info.component';
+import { ApiKeysComponent } from './components/dashboard/main-view/account/api-keys/api-keys.component';
 
 const routes: Routes = [
-  {
+{
     path: '',
     component: DashboardComponent,
     children:
-    [
-      { path: '', component: DashboardIndexComponent},
-      { path: 'maps', component: MapsComponent },
-      { path: 'stores', component: StoresComponent},
-      { path: 'preview', component: PreviewComponent},
-      { path: 'installation', component: InstallationComponent},
-      { path: 'settings', component: SettingsComponent},
-      { path: 'help', component: HelpComponent},
-      { path: 'account', component: AccountComponent},
-    ],
+        [
+        { path: '', component: DashboardIndexComponent},
+        { path: 'maps', component: MapsComponent },
+        { path: 'stores', component: StoresComponent},
+        { path: 'preview', component: PreviewComponent},
+        { path: 'installation', component: InstallationComponent},
+        { path: 'settings', component: SettingsComponent},
+        { path: 'help', component: HelpComponent},
+        {
+            path: 'account',
+            component: AccountComponent,
+            canActivateChild: [AuthGuard],
+            children:
+            [
+                { path: '', redirectTo: 'general', pathMatch: 'full'},
+                { path: 'general', component: GeneralComponent},
+                { path: 'billing', component: BillingInfoComponent},
+                { path: 'api-keys', component: ApiKeysComponent}
+            ]
+        },
+        ],
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard]
-  },
-  {
+},
+{
     path: 'login',
     component: CredentialsComponent,
     children: [
-      {path: '', component: LoginComponent},
-      {path: 'register', component: RegisterComponent},
-      {path: 'password-recovery', component: ForgotPasswordComponent},
+        {path: '', component: LoginComponent},
+        {path: 'register', component: RegisterComponent},
+        {path: 'password-recovery', component: ForgotPasswordComponent},
     ]
-  },
+},
 
-  {path: '**', component: NotFoundComponent},
+{path: '**', component: NotFoundComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+imports: [RouterModule.forRoot(routes)],
+exports: [RouterModule]
 })
 export class AppRoutingModule { }

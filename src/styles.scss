@@ -1,7 +1,13 @@
 @import 'vars.scss';
 
-body{
+
+//General
+.base-color-body{
     background-color: $base;
+}
+
+.white-body{
+    background-color: #ededed;
 }
 
 a{
@@ -14,6 +20,7 @@ a:focus{
     color: $darkest;
 }
 
+//Forms
 .form-control:focus{
     outline: $base;
     box-shadow: $inputShadow;
@@ -55,4 +62,50 @@ a:focus{
     color: $base;
     margin-top: 24px;
     margin-bottom: 24px;
+}
+
+//Input Cards
+.input-card {
+    background-color: white;
+    margin-left: 2px;
+    
+}
+.card-box{
+    max-width: 980px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.card-content{
+    padding-right: 50px;
+    padding-left: 50px;
+}
+.form-control-line{
+    border:none;
+    border-radius: 0px;
+    border-bottom: 1px solid #ccc;
+}
+.form-control-line:focus{
+    outline: none;
+    box-shadow:none;
+    box-shadow: 0 0 4px 0 $inputShadow;
+}
+.align-items-down {
+    position: absolute;
+    bottom: 8px;
+    left: 25px;
+}
+
+.paired-button-right{
+    margin-left: 10px;
+}
+.paired-button-left{
+    margin-right: 10px;
+}
+//navs
+nav{
+    margin-bottom: 5px;
+}
+nav :first-child{
+    padding-left: 0;
 }

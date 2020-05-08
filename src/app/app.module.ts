@@ -24,6 +24,9 @@ import { AlertComponent } from './components/common/alert/alert.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { AuthGuard } from './guards/auth.guard';
+import { GeneralComponent } from './components/dashboard/main-view/account/general/general.component';
+import { BillingInfoComponent } from './components/dashboard/main-view/account/billing-info/billing-info.component';
+import { ApiKeysComponent } from './components/dashboard/main-view/account/api-keys/api-keys.component';
 
 @NgModule({
 declarations: [
@@ -43,7 +46,10 @@ declarations: [
     HelpComponent,
     NotFoundComponent,
     CredentialsComponent,
-    AlertComponent
+    AlertComponent,
+    GeneralComponent,
+    BillingInfoComponent,
+    ApiKeysComponent
 ],
 imports: [
     BrowserModule,

@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         }, err => {
             this.loading = false;
             this.unauthorized = true;
-            //Add error
+            //Add server error
         });
     }
 
