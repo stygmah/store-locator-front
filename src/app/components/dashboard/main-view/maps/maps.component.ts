@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MapAtributes } from 'src/app/map-utilities/atributes.maps';
 
 @Component({
   selector: 'app-maps',
@@ -6,10 +7,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./maps.component.scss']
 })
 export class MapsComponent implements OnInit {
+    lat = 37.803180;
+    lng = -122.408321;
+    zoom = 15;
+    private styles: any[];
+    private stylesObject: any;
 
-  constructor() { }
 
-  ngOnInit() {
-  }
+    constructor() { }
+
+    ngOnInit() {
+        this.initBaseStyles();
+        this.objectReferenceToMapArray();
+    }
+
+    private initBaseStyles() {
+        this.stylesObject = MapAtributes.setBaseMap();
+    }
+
+    private addStyleToMap(element: string , property: string, value: string) {
+        this.stylesObject[element].setProperty(property, value);
+    }
+
+    private objectReferenceToMapArray() {
+        this.styles = Object.values(this.stylesObject);
+    }
+
 
 }

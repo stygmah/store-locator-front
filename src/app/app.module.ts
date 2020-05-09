@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +27,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { GeneralComponent } from './components/dashboard/main-view/account/general/general.component';
 import { BillingInfoComponent } from './components/dashboard/main-view/account/billing-info/billing-info.component';
 import { ApiKeysComponent } from './components/dashboard/main-view/account/api-keys/api-keys.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
 declarations: [
@@ -55,7 +56,10 @@ imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+        apiKey: environment.googleDevAPIKey
+    })
 ],
 providers: [
     {
