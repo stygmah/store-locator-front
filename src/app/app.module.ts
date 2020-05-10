@@ -27,7 +27,11 @@ import { AuthGuard } from './guards/auth.guard';
 import { GeneralComponent } from './components/dashboard/main-view/account/general/general.component';
 import { BillingInfoComponent } from './components/dashboard/main-view/account/billing-info/billing-info.component';
 import { ApiKeysComponent } from './components/dashboard/main-view/account/api-keys/api-keys.component';
+
 import { environment } from 'src/environments/environment';
+import { GeneralSettingsComponent } from './components/dashboard/main-view/maps/general-settings/general-settings.component';
+import { CustomComponent } from './components/dashboard/main-view/maps/custom/custom.component';
+import { AdvancedCustomizationComponent } from './components/dashboard/main-view/maps/advanced-customization/advanced-customization.component';
 
 @NgModule({
 declarations: [
@@ -50,7 +54,10 @@ declarations: [
     AlertComponent,
     GeneralComponent,
     BillingInfoComponent,
-    ApiKeysComponent
+    ApiKeysComponent,
+    GeneralSettingsComponent,
+    CustomComponent,
+    AdvancedCustomizationComponent
 ],
 imports: [
     BrowserModule,

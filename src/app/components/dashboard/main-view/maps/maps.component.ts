@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapAtributes } from 'src/app/map-utilities/atributes.maps';
+import { MapEditorService } from 'src/app/services/map-editor.service';
 
 @Component({
   selector: 'app-maps',
@@ -14,11 +15,17 @@ export class MapsComponent implements OnInit {
     private stylesObject: any;
 
 
-    constructor() { }
+    constructor(
+        private mapEditorService: MapEditorService
+    ) { }
 
     ngOnInit() {
         this.initBaseStyles();
-        this.objectReferenceToMapArray();
+        // this.objectReferenceToMapArray();
+
+        this.mapEditorService.allMapOptionsArray.subscribe((e) => {
+            this.styles = e;
+        });
     }
 
     private initBaseStyles() {
@@ -29,9 +36,9 @@ export class MapsComponent implements OnInit {
         this.stylesObject[element].setProperty(property, value);
     }
 
-    private objectReferenceToMapArray() {
-        this.styles = Object.values(this.stylesObject);
-    }
+    // private objectReferenceToMapArray() {
+    //     this.styles = Object.values(this.stylesObject);
+    // }
 
 
 }

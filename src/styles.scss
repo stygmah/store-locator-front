@@ -102,10 +102,21 @@ a:focus{
 .paired-button-left{
     margin-right: 10px;
 }
+
+.custom-range{
+    height: 2px;
+}
+
 //navs
 nav{
     margin-bottom: 5px;
 }
 nav :first-child{
     padding-left: 0;
+}
+
+//img
+.map-template-img{
+    max-width: 140px;
+    max-height: 75px;
 }

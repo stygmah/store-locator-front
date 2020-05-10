@@ -1,0 +1,7 @@
+export enum SLIDER_VALUES_4 {
+    POSITION1= 1,
+    POSITION2= 34,
+    POSITION3= 67,
+    POSITION4= 100
+}
+

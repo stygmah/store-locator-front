@@ -18,6 +18,9 @@ import { AuthGuard } from './guards/auth.guard';
 import { GeneralComponent } from './components/dashboard/main-view/account/general/general.component';
 import { BillingInfoComponent } from './components/dashboard/main-view/account/billing-info/billing-info.component';
 import { ApiKeysComponent } from './components/dashboard/main-view/account/api-keys/api-keys.component';
+import { GeneralSettingsComponent } from './components/dashboard/main-view/maps/general-settings/general-settings.component';
+import { CustomComponent } from './components/dashboard/main-view/maps/custom/custom.component';
+import { AdvancedCustomizationComponent } from './components/dashboard/main-view/maps/advanced-customization/advanced-customization.component';
 
 const routes: Routes = [
 {
@@ -26,7 +29,17 @@ const routes: Routes = [
     children:
         [
         { path: '', component: DashboardIndexComponent},
-        { path: 'maps', component: MapsComponent },
+        {
+            path: 'maps',
+            component: MapsComponent,
+            children:
+            [
+                { path: '', redirectTo: 'general-settings', pathMatch: 'full'},
+                { path: 'general-settings', component: GeneralSettingsComponent},
+                { path: 'customization', component: CustomComponent},
+                { path: 'advanced', component: AdvancedCustomizationComponent},
+            ]
+        },
         { path: 'stores', component: StoresComponent},
         { path: 'preview', component: PreviewComponent},
         { path: 'installation', component: InstallationComponent},

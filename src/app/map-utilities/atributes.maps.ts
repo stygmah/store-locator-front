@@ -1,4 +1,4 @@
-import { MapPropertyExtended, MapProperty } from './map-property.model';
+import { MapPropertyExtended, MapProperty } from './map-property.class';
 
 
 export class MapAtributes {
