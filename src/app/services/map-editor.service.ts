@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { MapProperty } from '../map-utilities/map-property.class';
+import { MapProperty, MapPropertyExtended } from '../map-utilities/map-property.class';
 import { BehaviorSubject } from 'rxjs';
 import { MapTheme } from '../models/MapTheme.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { SLIDER_VALUES_4 } from '../enums/custom-basic-sliders.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -11,49 +12,36 @@ import { environment } from 'src/environments/environment';
 export class MapEditorService {
 
     public allMapOptionsArray: BehaviorSubject<MapProperty[]>;
-    public mapCustomSliderValues: BehaviorSubject<any> ;
-    public mapOptions: BehaviorSubject<any> ;
 
     private optionsRefValue: any;
     private slidersRefValue: any;
     private markerRefValue: any;
     private themeRefValue: any;
 
+    labelObject: MapPropertyExtended[];
+    landmarkObject: MapPropertyExtended[];
+    roadObject: MapPropertyExtended[];//TODO convert all three to own object
+
     constructor(
         private http: HttpClient
     ) {
         this.allMapOptionsArray = new BehaviorSubject([]);
-        this.mapOptions = new BehaviorSubject([]);
-        this.mapCustomSliderValues = new BehaviorSubject([]);
+
+        this.initBlankSliderArrays();
+        this.initRefObjects();
     }
 
-    public initiateValues(config: any)
-    {
-
+    private initRefObjects() {
+        this.slidersRefValue = {};
+        this.optionsRefValue = {};
+        this.markerRefValue = '';
+        this.themeRefValue = {};
     }
 
-
-    public emitNewOptionsMapValues(values: any) {
-        this.mapOptions.next(values);
-        this.updateOptionsArray(this.convertAllToPropertiesArray());
-    }
-
-    public emitNewSliderValues(values: any) {
-        this.mapCustomSliderValues.next(values);
-        this.updateOptionsArray(this.convertAllToPropertiesArray());
-    }
 
     private updateOptionsArray(arr: MapProperty[]) {
         this.allMapOptionsArray.next(arr);
     }
-
-    private convertAllToPropertiesArray() {
-        return [
-        //  ...Object.values(this.mapOptions),
-            ...this.mapCustomSliderValues.getValue()
-        ];
-    }
-
 
     ///
     /// HTTP REQUESTS
@@ -77,19 +65,93 @@ export class MapEditorService {
 
 
     ///
-    /// Reference object setters
+    /// Slider values
     ///
 
-    setSlidersReference(value: any) {
-        this.slidersRefValue = value;
+    processLabelValue(value) {
+        switch (value) {
+            case SLIDER_VALUES_4.POSITION1:
+                this.labelObject = [new MapPropertyExtended('all', 'labels', [{visibility: 'off'}])];
+                break;
+            case SLIDER_VALUES_4.POSITION2:
+                this.labelObject = [
+                    new MapPropertyExtended('administrative.land_parcel', 'labels.text', [{visibility: 'off'}]),
+                    new MapPropertyExtended('administrative.neighborhood', 'labels.text', [{visibility: 'off'}]),
+                    new MapPropertyExtended('poi', 'labels.text', [{visibility: 'off'}]),
+                    new MapPropertyExtended('road', 'labels.text', [{visibility: 'off'}]),
+                    new MapPropertyExtended('water', 'labels.text', [{visibility: 'off'}]),
+                ];
+                break;
+            case SLIDER_VALUES_4.POSITION3:
+                this.labelObject = [
+                    new MapPropertyExtended('road', 'labels.text', [{visibility: 'off'}]),
+                ];
+                break;
+            case SLIDER_VALUES_4.POSITION4:
+                this.labelObject = [];
+                break;
+        }
+        this.updateOptionsArray(this.sliderValuesToArray());
     }
-    setThemeReference(value: any) {
-        this.themeRefValue = value;
+
+    processLandmarkValue(value) {
+        switch (value) {
+            case SLIDER_VALUES_4.POSITION1:
+                this.landmarkObject = [new MapPropertyExtended('poi', 'all', [{visibility: 'off'}])];
+                break;
+            case SLIDER_VALUES_4.POSITION2:
+                this.landmarkObject = [
+                    new MapPropertyExtended('poi', 'labels', [{visibility: 'off'}])
+                ];
+                break;
+            case SLIDER_VALUES_4.POSITION3:
+                this.landmarkObject = [
+                    new MapPropertyExtended('poi.business', 'all', [{visibility: 'off'}]),
+                ];
+                break;
+            case SLIDER_VALUES_4.POSITION4:
+                this.landmarkObject = [];
+                break;
+        }
+        this.updateOptionsArray(this.sliderValuesToArray());
     }
-    setMarkerReference(value: any) {
-        this.markerRefValue = value;
+
+    processRoadValue(value) {
+        switch (value) {
+            case SLIDER_VALUES_4.POSITION1:
+                this.roadObject = [new MapPropertyExtended('road', 'all', [{visibility: 'off'}])];
+                break;
+            case SLIDER_VALUES_4.POSITION2:
+                this.roadObject = [
+                    new MapPropertyExtended('road.arterial', 'all', [{visibility: 'off'}]),
+                    new MapPropertyExtended('road.highway', 'labels', [{visibility: 'off'}]),
+                    new MapPropertyExtended('road.local', 'all', [{visibility: 'off'}]),
+                ];
+                break;
+            case SLIDER_VALUES_4.POSITION3:
+                this.roadObject = [
+                    new MapPropertyExtended('road.arterial', 'labels', [{visibility: 'off'}]),
+                    new MapPropertyExtended('road.highway', 'labels', [{visibility: 'off'}]),
+                    new MapPropertyExtended('road.local', 'all', [{visibility: 'off'}]),
+                ];
+                break;
+            case SLIDER_VALUES_4.POSITION4:
+                this.roadObject = [];
+                break;
+        }
+        this.updateOptionsArray(this.sliderValuesToArray());
     }
-    setOptionsReference(value: any) {
-        this.optionsRefValue = value;
+
+    sliderValuesToArray() {
+        return [
+            ...this.landmarkObject,
+            ...this.roadObject,
+            ...this.labelObject
+        ];
+    }
+    initBlankSliderArrays() {
+        this.roadObject = [];
+        this.labelObject = [];
+        this.landmarkObject = [];
     }
 }

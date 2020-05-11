@@ -12,9 +12,8 @@ import { MapEditorService } from 'src/app/services/map-editor.service';
 export class CustomComponent implements OnInit {
 
     private slidersForm: FormGroup;
-    private labelObject: any;
-    private landmarkObject: any;
-    private roadObject: any;
+    private selectedTheme: any;
+    private selectedPointer: any;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -23,9 +22,13 @@ export class CustomComponent implements OnInit {
 
     ngOnInit() {
         this.initSliders();
-        this.slidersForm.valueChanges.subscribe((value) => {
-            this.processSlidersValues();
-            this.mapEditorService.emitNewSliderValues(this.sliderValuesToArray());
+        this.mapEditorService.getFullCustomConfig().subscribe((e: any) =>{
+            this.slidersForm.controls.labels.setValue(e.config.selectedSlidersValues.label);
+            this.slidersForm.controls.landmarks.setValue(e.config.selectedSlidersValues.landmark);
+            this.slidersForm.controls.roads.setValue(e.config.selectedSlidersValues.road);
+
+            this.selectedTheme = e.config.theme;
+            this.selectedPointer = e.config.marker;
         });
     }
 
@@ -35,108 +38,20 @@ export class CustomComponent implements OnInit {
             landmarks: [100, Validators.required],
             roads: [100, Validators.required]
         });
-        this.initBlankSliderArrays();
-    }
-
-    initBlankSliderArrays() {
-        this.roadObject = [];
-        this.labelObject = [];
-        this.landmarkObject = [];
+        this.sliderListeners();
     }
 
 
-
-    ///
-    /// SLIDER VALUES FUNCTIONS
-    ///
-    processSlidersValues() {
-        this.processLandmarkValue();
-        this.processLabelValue();
-        this.processRoadValue();
-        console.log( this.sliderValuesToArray() );
+    sliderListeners() {
+        this.slidersForm.controls.labels.valueChanges.subscribe((value) => {
+            this.mapEditorService.processLabelValue(value);
+        });
+        this.slidersForm.controls.landmarks.valueChanges.subscribe((value) => {
+            this.mapEditorService.processLandmarkValue(value);
+        });
+        this.slidersForm.controls.roads.valueChanges.subscribe((value) => {
+            this.mapEditorService.processRoadValue(value);
+        });
     }
-
-
-    processLabelValue() {
-        switch (this.slidersForm.value.labels) {
-            case SLIDER_VALUES_4.POSITION1:
-                this.labelObject = [new MapPropertyExtended('all', 'labels', [{visibility: 'off'}])];
-                break;
-            case SLIDER_VALUES_4.POSITION2:
-                this.labelObject = [
-                    new MapPropertyExtended('administrative.land_parcel', 'labels.text', [{visibility: 'off'}]),
-                    new MapPropertyExtended('administrative.neighborhood', 'labels.text', [{visibility: 'off'}]),
-                    new MapPropertyExtended('poi', 'labels.text', [{visibility: 'off'}]),
-                    new MapPropertyExtended('road', 'labels.text', [{visibility: 'off'}]),
-                    new MapPropertyExtended('water', 'labels.text', [{visibility: 'off'}]),
-                ];
-                break;
-            case SLIDER_VALUES_4.POSITION3:
-                this.labelObject = [
-                    new MapPropertyExtended('road', 'labels.text', [{visibility: 'off'}]),
-                ];
-                break;
-            case SLIDER_VALUES_4.POSITION4:
-                this.labelObject = [];
-                break;
-        }
-    }
-
-    processLandmarkValue() {
-        switch (this.slidersForm.value.landmarks) {
-            case SLIDER_VALUES_4.POSITION1:
-                this.landmarkObject = [new MapPropertyExtended('poi', 'all', [{visibility: 'off'}])];
-                break;
-            case SLIDER_VALUES_4.POSITION2:
-                this.landmarkObject = [
-                    new MapPropertyExtended('poi', 'labels', [{visibility: 'off'}])
-                ];
-                break;
-            case SLIDER_VALUES_4.POSITION3:
-                this.landmarkObject = [
-                    new MapPropertyExtended('poi.business', 'all', [{visibility: 'off'}]),
-                ];
-                break;
-            case SLIDER_VALUES_4.POSITION4:
-                this.landmarkObject = [];
-                break;
-        }
-    }
-
-    processRoadValue() {
-        switch (this.slidersForm.value.roads) {
-            case SLIDER_VALUES_4.POSITION1:
-                this.roadObject = [new MapPropertyExtended('road', 'all', [{visibility: 'off'}])];
-                break;
-            case SLIDER_VALUES_4.POSITION2:
-                this.roadObject = [
-                    new MapPropertyExtended('road.arterial', 'all', [{visibility: 'off'}]),
-                    new MapPropertyExtended('road.highway', 'labels', [{visibility: 'off'}]),
-                    new MapPropertyExtended('road.local', 'all', [{visibility: 'off'}]),
-                ];
-                break;
-            case SLIDER_VALUES_4.POSITION3:
-                this.roadObject = [
-                    new MapPropertyExtended('road.arterial', 'labels', [{visibility: 'off'}]),
-                    new MapPropertyExtended('road.highway', 'labels', [{visibility: 'off'}]),
-                    new MapPropertyExtended('road.local', 'all', [{visibility: 'off'}]),
-                ];
-                break;
-            case SLIDER_VALUES_4.POSITION4:
-                this.roadObject = [];
-                break;
-        }
-    }
-
-    sliderValuesToArray() {
-        return [
-            ...this.landmarkObject,
-            ...this.roadObject,
-            ...this.labelObject
-        ];
-    }
-    ///
-
-
 
 }
