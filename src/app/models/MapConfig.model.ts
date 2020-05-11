@@ -4,13 +4,11 @@ import { MapTheme } from './MapTheme.model';
 export class MapConfig {
     parentMapId: string;
     mainOptions: any;
-    customizationOptions: {
-        selectedSlidersValues: {
-            label: number,
-            landmark: number,
-            road: number
-        },
-        sliderTotalValue: MapProperty[]
+    selectedSlidersValues: {
+        label: number,
+        landmark: number,
+        road: number
     };
     theme: MapTheme;
+    marker: string;
 }

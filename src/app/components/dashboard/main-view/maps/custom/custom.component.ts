@@ -25,7 +25,7 @@ export class CustomComponent implements OnInit {
         this.initSliders();
         this.slidersForm.valueChanges.subscribe((value) => {
             this.processSlidersValues();
-            this.mapEditorService.emitNewOptionsMapValues(this.sliderValuesToArray());
+            this.mapEditorService.emitNewSliderValues(this.sliderValuesToArray());
         });
     }
 
@@ -53,7 +53,7 @@ export class CustomComponent implements OnInit {
         this.processLandmarkValue();
         this.processLabelValue();
         this.processRoadValue();
-        console.log( this.sliderValuesToArray() )
+        console.log( this.sliderValuesToArray() );
     }
 
 
@@ -128,7 +128,7 @@ export class CustomComponent implements OnInit {
         }
     }
 
-    sliderValuesToArray () {
+    sliderValuesToArray() {
         return [
             ...this.landmarkObject,
             ...this.roadObject,
@@ -136,4 +136,7 @@ export class CustomComponent implements OnInit {
         ];
     }
     ///
+
+
+
 }
