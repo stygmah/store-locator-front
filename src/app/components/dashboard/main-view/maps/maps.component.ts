@@ -40,5 +40,11 @@ export class MapsComponent implements OnInit {
     //     this.styles = Object.values(this.stylesObject);
     // }
 
+    private save(){
+        console.log('save');
+    }
 
+    private reset(){
+        console.log('discard');
+    }
 }

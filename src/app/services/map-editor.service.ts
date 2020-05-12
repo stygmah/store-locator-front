@@ -26,19 +26,44 @@ export class MapEditorService {
         private http: HttpClient
     ) {
         this.allMapOptionsArray = new BehaviorSubject([]);
-
+        this.initValues();
         this.initBlankSliderArrays();
-        this.initRefObjects();
     }
 
-    private initRefObjects() {
+
+    ///
+    /// Init functions
+    ///
+    private initValues () {
         this.slidersRefValue = {};
         this.optionsRefValue = {};
-        this.markerRefValue = '';
-        this.themeRefValue = {};
     }
 
+    areSlidersSet() {
+        return Object.keys(this.slidersRefValue).length > 0;
+    }
+    areOptionsSet() {
+        return Object.keys(this.optionsRefValue).length > 0;
+    }
 
+    getSlidersRefValue(): any {
+        return this.slidersRefValue;
+    }
+    getOptionsRefValue(): any {
+        return this.optionsRefValue;
+    }
+
+    setSliderValues(labels, landmarks, roads) {
+        this.slidersRefValue = {
+            labels,
+            landmarks,
+            roads
+        };
+    }
+
+    ///
+    ///
+    ///
     private updateOptionsArray(arr: MapProperty[]) {
         this.allMapOptionsArray.next(arr);
     }
@@ -91,6 +116,7 @@ export class MapEditorService {
                 this.labelObject = [];
                 break;
         }
+        this.slidersRefValue.labels = value;
         this.updateOptionsArray(this.sliderValuesToArray());
     }
 
@@ -113,6 +139,7 @@ export class MapEditorService {
                 this.landmarkObject = [];
                 break;
         }
+        this.slidersRefValue.landmarks = value;
         this.updateOptionsArray(this.sliderValuesToArray());
     }
 
@@ -124,14 +151,11 @@ export class MapEditorService {
             case SLIDER_VALUES_4.POSITION2:
                 this.roadObject = [
                     new MapPropertyExtended('road.arterial', 'all', [{visibility: 'off'}]),
-                    new MapPropertyExtended('road.highway', 'labels', [{visibility: 'off'}]),
                     new MapPropertyExtended('road.local', 'all', [{visibility: 'off'}]),
                 ];
                 break;
             case SLIDER_VALUES_4.POSITION3:
                 this.roadObject = [
-                    new MapPropertyExtended('road.arterial', 'labels', [{visibility: 'off'}]),
-                    new MapPropertyExtended('road.highway', 'labels', [{visibility: 'off'}]),
                     new MapPropertyExtended('road.local', 'all', [{visibility: 'off'}]),
                 ];
                 break;
@@ -139,6 +163,7 @@ export class MapEditorService {
                 this.roadObject = [];
                 break;
         }
+        this.slidersRefValue.roads = value;
         this.updateOptionsArray(this.sliderValuesToArray());
     }
 

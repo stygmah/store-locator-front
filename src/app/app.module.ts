@@ -32,6 +32,10 @@ import { environment } from 'src/environments/environment';
 import { GeneralSettingsComponent } from './components/dashboard/main-view/maps/general-settings/general-settings.component';
 import { CustomComponent } from './components/dashboard/main-view/maps/custom/custom.component';
 import { AdvancedCustomizationComponent } from './components/dashboard/main-view/maps/advanced-customization/advanced-customization.component';
+import { SaveOptionsComponent } from './components/common/save-options/save-options.component';
+import { ModalComponent } from './components/common/modal/modal.component';
+import { ThemesListComponent } from './components/dashboard/main-view/maps/custom/themes-list/themes-list.component';
+import { PinsListComponent } from './components/dashboard/main-view/maps/custom/pins-list/pins-list.component';
 
 @NgModule({
 declarations: [
@@ -57,7 +61,15 @@ declarations: [
     ApiKeysComponent,
     GeneralSettingsComponent,
     CustomComponent,
-    AdvancedCustomizationComponent
+    AdvancedCustomizationComponent,
+    SaveOptionsComponent,
+    ModalComponent,
+    ThemesListComponent,
+    PinsListComponent
+],
+entryComponents: [
+    ThemesListComponent,
+    PinsListComponent
 ],
 imports: [
     BrowserModule,

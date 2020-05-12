@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SLIDER_VALUES_4 } from 'src/app/enums/custom-basic-sliders.enum';
 import { MapPropertyExtended, MapProperty } from 'src/app/map-utilities/map-property.class';
 import { MapEditorService } from 'src/app/services/map-editor.service';
+import { ThemesListComponent } from './themes-list/themes-list.component';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-custom',
@@ -17,19 +19,14 @@ export class CustomComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private mapEditorService: MapEditorService
+        private mapEditorService: MapEditorService,
+        private modalService: ModalService
     ) { }
 
     ngOnInit() {
         this.initSliders();
-        this.mapEditorService.getFullCustomConfig().subscribe((e: any) =>{
-            this.slidersForm.controls.labels.setValue(e.config.selectedSlidersValues.label);
-            this.slidersForm.controls.landmarks.setValue(e.config.selectedSlidersValues.landmark);
-            this.slidersForm.controls.roads.setValue(e.config.selectedSlidersValues.road);
-
-            this.selectedTheme = e.config.theme;
-            this.selectedPointer = e.config.marker;
-        });
+        console.log(this.mapEditorService.areSlidersSet())
+        this.setInitValue ();
     }
 
     initSliders() {
@@ -39,6 +36,30 @@ export class CustomComponent implements OnInit {
             roads: [100, Validators.required]
         });
         this.sliderListeners();
+    }
+
+    setInitValue() {
+        if (!this.mapEditorService.areSlidersSet()) {//TODO: change checker as thme and pointer are not checked but asumed
+            this.mapEditorService.getFullCustomConfig().subscribe((e: any) => {
+                this.slidersForm.controls.labels.setValue(e.config.selectedSlidersValues.label);
+                this.slidersForm.controls.landmarks.setValue(e.config.selectedSlidersValues.landmark);
+                this.slidersForm.controls.roads.setValue(e.config.selectedSlidersValues.road);
+
+                this.mapEditorService.setSliderValues(
+                    e.config.selectedSlidersValues.label,
+                    e.config.selectedSlidersValues.landmark,
+                    e.config.selectedSlidersValues.road
+                );
+
+                this.selectedTheme = e.config.theme;
+                this.selectedPointer = e.config.marker;//move out to own func
+
+            });
+        } else {
+            this.slidersForm.controls.labels.setValue(this.mapEditorService.getSlidersRefValue().labels);
+            this.slidersForm.controls.landmarks.setValue(this.mapEditorService.getSlidersRefValue().landmarks);
+            this.slidersForm.controls.roads.setValue(this.mapEditorService.getSlidersRefValue().roads);
+        }
     }
 
 
@@ -52,6 +73,11 @@ export class CustomComponent implements OnInit {
         this.slidersForm.controls.roads.valueChanges.subscribe((value) => {
             this.mapEditorService.processRoadValue(value);
         });
+    }
+
+    showModal() {
+        console.log('mod')
+        this.modalService.init(ThemesListComponent, null, null);
     }
 
 }
