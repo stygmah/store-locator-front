@@ -1,3 +1,51 @@
-<p>
-  stores works!
-</p>
+
+
+
+
+<div class="container card-box p-5">
+    <div class="row p-3">
+        <h2 class="stick-left mr-auto d-inline-block">Account</h2>
+        <div class="d-inline-block left-buttons pull-right">
+            <button type="submit" class="btn btn-outline-primary btn-md">Import from CSV</button>
+            <button class="btn btn-primary paired-button-right"><b>+</b></button>
+        </div>
+    </div>
+    <div class="shadow-sm pl-0 pr-0 mb-3 bg-white card">
+
+        <nav class="navbar lighten-3">
+            <!-- Search form -->
+            <div class="form-inline mr-auto">
+                <div class="input-group">
+                    <div class="input-group-btn search-panel">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept">Filter by</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#contains">Contains</a></li>
+                          <li><a href="#its_equal">It's equal</a></li>
+                          <li><a href="#greather_than">Greather than ></a></li>
+                          <li><a href="#less_than">Less than < </a></li>
+                          <li class="divider"></li>
+                          <li><a href="#all">Anything</a></li>
+                        </ul>
+                    </div>
+                    <input type="hidden" name="search_param" value="all" id="search_param">         
+                    <input type="text" class="form-control" name="x" placeholder="Search term...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-outline-danger">Delete</button>
+                <button class="btn btn-outline-primary paired-button-right">Export to CSV</button>
+            </div>
+        
+        </nav>
+
+
+
+        <app-store-table></app-store-table>
+    </div>
+</div>

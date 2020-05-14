@@ -36,6 +36,7 @@ import { SaveOptionsComponent } from './components/common/save-options/save-opti
 import { ModalComponent } from './components/common/modal/modal.component';
 import { ThemesListComponent } from './components/dashboard/main-view/maps/custom/themes-list/themes-list.component';
 import { PinsListComponent } from './components/dashboard/main-view/maps/custom/pins-list/pins-list.component';
+import { StoreTableComponent } from './components/dashboard/main-view/stores/store-table/store-table.component';
 
 @NgModule({
 declarations: [
@@ -65,7 +66,8 @@ declarations: [
     SaveOptionsComponent,
     ModalComponent,
     ThemesListComponent,
-    PinsListComponent
+    PinsListComponent,
+    StoreTableComponent
 ],
 entryComponents: [
     ThemesListComponent,

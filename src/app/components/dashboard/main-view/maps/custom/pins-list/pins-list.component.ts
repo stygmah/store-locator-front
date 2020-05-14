@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MapEditorService } from 'src/app/services/map-editor.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-pins-list',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PinsListComponent implements OnInit {
 
-  constructor() { }
+    constructor(
+        private mapEditorService: MapEditorService,
+        private modalService: ModalService
+    ) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        //get user pins
+    }
 
+    close() {
+        this.modalService.destroy();
+    }
 }

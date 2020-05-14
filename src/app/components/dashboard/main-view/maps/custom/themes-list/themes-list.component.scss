@@ -1,7 +1,13 @@
 .theme-selector-button{
-    background-color: grey;
+
+    margin-bottom: 10px;
+    text-align: right;
     img{
-        height: 80px;
-        width: 320px;
+        height: 100%; /*or 70%, or what you want*/
+        width: 100%;
     }
+}
+
+.theme-selector-button:hover{
+    cursor: pointer;
 }

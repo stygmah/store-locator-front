@@ -7,7 +7,7 @@
 }
 
 .white-body{
-    background-color: #ededed;
+    background-color: $light-grey;
 }
 
 a{
@@ -71,7 +71,7 @@ a:focus{
     
 }
 .card-box{
-    max-width: 980px;
+    max-width: 1580px;
     margin-right: auto;
     margin-left: auto;
 }

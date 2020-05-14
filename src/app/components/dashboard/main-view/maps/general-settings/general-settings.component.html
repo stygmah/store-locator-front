@@ -1,3 +1,44 @@
-<p>
-  general-settings works!
-</p>
+<!--Sliders-->
+<div >
+    <!--Labels-->
+
+    <h6>Initial Values</h6>
+    <!-- Stores-->
+    <div>
+        <div class="mb-4">
+            <input type="radio" ><label  class="ml-3">Store closest to user</label>
+            <br/>
+        </div>
+    </div>
+    <!-- Stores-->
+    <div>
+        <div class="mb-4">
+            <input type="radio" ><label  class="ml-3">Default store</label>
+        </div>
+        <div class="col-sm-6 text-left">
+            <select class="custom-select custom-select-sm" ></select>
+        </div>
+        <br>
+    </div>
+    <!-- Defined values-->
+    <div>
+        <div class="mb-4">
+            <input type="radio" ><label  class="ml-3">Defined values</label>
+            <br/>
+        </div>
+        <div>
+            <label class="col-md-4">Latitude</label>
+            <input type="text" class="col-md-4">
+        </div>
+        <div>
+            <label  class="col-md-4">Longitude</label>
+            <input type="text" class="col-md-4">
+        </div>
+    </div>
+    <!--Zoom-->
+    <div>
+        <label class="col-md-4">Zoom</label>
+        <input type="range" class="custom-range col-md-5" step="0.1" max="50">
+        <input type="text" class="col-md-3 ml-3" style="width: 10px">
+    </div>
+</div>

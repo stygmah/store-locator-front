@@ -28,7 +28,7 @@ export class ThemesListComponent implements OnInit {
         this.modalService.destroy();
     }
 
-    selectTheme(){
+    selectTheme() {
         
     }
 

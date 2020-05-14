@@ -5,6 +5,7 @@ import { MapPropertyExtended, MapProperty } from 'src/app/map-utilities/map-prop
 import { MapEditorService } from 'src/app/services/map-editor.service';
 import { ThemesListComponent } from './themes-list/themes-list.component';
 import { ModalService } from 'src/app/services/modal.service';
+import { PinsListComponent } from './pins-list/pins-list.component';
 
 @Component({
   selector: 'app-custom',
@@ -75,9 +76,12 @@ export class CustomComponent implements OnInit {
         });
     }
 
-    showModal() {
-        console.log('mod')
+    showModalThemes() {
         this.modalService.init(ThemesListComponent, null, null);
     }
+    showModalMarkers() {
+        this.modalService.init(PinsListComponent, null, null);
+    }
+
 
 }
