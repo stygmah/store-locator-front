@@ -1,13 +1,14 @@
-<div class=" w-100 save-dialogue">
-    <div class=" shadow bg-white rounded input-card ">
+<div class=" w-100 save-dialogue " *ngIf="show">
+    <div class=" shadow bg-white rounded input-card animated fadeInDown">
         <!--Left-->
         <div>
 
         </div>
         <!--Right-->
         <div class="text-right">
-            <button type="submit" class="btn btn-outline-primary btn-md" (click)="discardAction()">Discard changes</button>
-            <button type="submit" class="btn btn-primary btn-md  paired-button-right" (click)="saveAction()">Save Changes</button>
+            <button type="submit" class="btn btn-outline-primary btn-md" (click)="discardAction()"  *ngIf="!loading">Discard changes</button>
+            <button type="submit" class="btn btn-primary btn-md  paired-button-right" (click)="saveAction()"  *ngIf="!loading">Save Changes</button>
+            <img src="/assets/img/Spinner-0.8s-204px.gif" *ngIf="loading">
         </div>
     </div>
 </div>

@@ -3,9 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SLIDER_VALUES_4 } from 'src/app/enums/custom-basic-sliders.enum';
 import { MapPropertyExtended, MapProperty } from 'src/app/map-utilities/map-property.class';
 import { MapEditorService } from 'src/app/services/map-editor.service';
-import { ThemesListComponent } from './themes-list/themes-list.component';
-import { ModalService } from 'src/app/services/modal.service';
-import { PinsListComponent } from './pins-list/pins-list.component';
+
 
 @Component({
   selector: 'app-custom',
@@ -20,13 +18,11 @@ export class CustomComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private mapEditorService: MapEditorService,
-        private modalService: ModalService
+        private mapEditorService: MapEditorService
     ) { }
 
     ngOnInit() {
         this.initSliders();
-        console.log(this.mapEditorService.areSlidersSet())
         this.setInitValue ();
     }
 
@@ -76,12 +72,7 @@ export class CustomComponent implements OnInit {
         });
     }
 
-    showModalThemes() {
-        this.modalService.init(ThemesListComponent, null, null);
-    }
-    showModalMarkers() {
-        this.modalService.init(PinsListComponent, null, null);
-    }
+
 
 
 }

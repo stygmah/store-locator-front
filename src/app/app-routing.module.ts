@@ -21,6 +21,9 @@ import { ApiKeysComponent } from './components/dashboard/main-view/account/api-k
 import { GeneralSettingsComponent } from './components/dashboard/main-view/maps/general-settings/general-settings.component';
 import { CustomComponent } from './components/dashboard/main-view/maps/custom/custom.component';
 import { AdvancedCustomizationComponent } from './components/dashboard/main-view/maps/advanced-customization/advanced-customization.component';
+import { ThemesComponent } from './components/dashboard/main-view/maps/themes/themes.component';
+import { PinsComponent } from './components/dashboard/main-view/maps/pins/pins.component';
+import { CreateOrEditComponent } from './components/dashboard/main-view/stores/create-or-edit/create-or-edit.component';
 
 const routes: Routes = [
 {
@@ -36,11 +39,15 @@ const routes: Routes = [
             [
                 { path: '', redirectTo: 'general-settings', pathMatch: 'full'},
                 { path: 'general-settings', component: GeneralSettingsComponent},
+                { path: 'themes', component: ThemesComponent},
+                { path: 'pins', component: PinsComponent},
                 { path: 'customization', component: CustomComponent},
                 { path: 'advanced', component: AdvancedCustomizationComponent},
             ]
         },
         { path: 'stores', component: StoresComponent},
+        { path: 'edit-store', component: CreateOrEditComponent},
+        { path: 'edit-store/:id', component: CreateOrEditComponent},
         { path: 'preview', component: PreviewComponent},
         { path: 'installation', component: InstallationComponent},
         { path: 'settings', component: SettingsComponent},

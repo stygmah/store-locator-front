@@ -1,4 +1,5 @@
 @import 'vars.scss';
+@import 'animations.scss';
 
 
 //General
@@ -19,7 +20,9 @@ a:hover{
 a:focus{
     color: $darkest;
 }
-
+.login-logo{
+    width: 240px;
+}
 //Forms
 .form-control:focus{
     outline: $base;
@@ -27,13 +30,27 @@ a:focus{
 }
 
 .btn-primary, .btn-block {
-    background-color: $base;
-    border-color: $base;
+    background-color: $base !important;
+    border-color: $base !important;
+}
+.btn-outline-primary {
+    color: $base !important;
+    border-color: $base !important;
 }
 
-.btn-primary:hover, .btn-block:hover {
-    background-color: $dark;
+.btn-primary:hover, .btn-block:hover .btn-block:focus{
+    background-color: $dark !important;
     border-color: $dark;
+}
+
+
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+    color: $dark !important;
+    border-color: $dark !important;
+}
+.btn-outline-primary:active {
+    color: $darkest !important;
+    border-color: $darkest !important;
 }
 
 .btn-primary:focus, .btn-block:focus {
@@ -48,7 +65,7 @@ a:focus{
 }
 
 .btn-primary:disabled, .btn-block:disabled {
-    background-color: $light;
+    background-color: $light !important;
     border-color: $light;
 }
 
@@ -65,13 +82,9 @@ a:focus{
 }
 
 //Input Cards
-.input-card {
-    background-color: white;
-    margin-left: 2px;
-    
-}
+
 .card-box{
-    max-width: 1580px;
+    max-width: 1380px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -105,14 +118,6 @@ a:focus{
 
 .custom-range{
     height: 2px;
-}
-
-//navs
-nav{
-    margin-bottom: 5px;
-}
-nav :first-child{
-    padding-left: 0;
 }
 
 //img

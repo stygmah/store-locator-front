@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-general-settings',
   templateUrl: './general-settings.component.html',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneralSettingsComponent implements OnInit {
 
-  constructor() { }
+    constructor(
 
-  ngOnInit() {
-  }
+    ) { }
 
+    ngOnInit() {
+    }
 }

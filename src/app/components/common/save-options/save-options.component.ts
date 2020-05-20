@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { SaveService } from 'src/app/services/save.service';
+import { SAVE_STATE } from 'src/app/enums/save-state.enum';
 
 @Component({
   selector: 'app-save-options',
@@ -7,19 +9,24 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class SaveOptionsComponent implements OnInit {
 
-    @Output() save = new EventEmitter();
-    @Output() discard = new EventEmitter();;
+    private show: boolean;
+    private loading: boolean;
 
-    constructor() { }
+    constructor(private saveService: SaveService) { }
 
     ngOnInit() {
+        this.show = false;
+        this.saveService.state.subscribe((state) => {
+            this.show = state === SAVE_STATE.IDLE ? false : true;
+            this.loading = state === SAVE_STATE.LOADING ? true : false;
+        });
     }
 
     saveAction() {
-        this.save.emit('save');
+        this.saveService.save();
     }
     discardAction() {
-        this.discard.emit('discard');
+        this.saveService.reset();
     }
 
 }

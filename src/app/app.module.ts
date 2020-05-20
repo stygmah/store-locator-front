@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 
@@ -34,9 +35,10 @@ import { CustomComponent } from './components/dashboard/main-view/maps/custom/cu
 import { AdvancedCustomizationComponent } from './components/dashboard/main-view/maps/advanced-customization/advanced-customization.component';
 import { SaveOptionsComponent } from './components/common/save-options/save-options.component';
 import { ModalComponent } from './components/common/modal/modal.component';
-import { ThemesListComponent } from './components/dashboard/main-view/maps/custom/themes-list/themes-list.component';
-import { PinsListComponent } from './components/dashboard/main-view/maps/custom/pins-list/pins-list.component';
 import { StoreTableComponent } from './components/dashboard/main-view/stores/store-table/store-table.component';
+import { ThemesComponent } from './components/dashboard/main-view/maps/themes/themes.component';
+import { PinsComponent } from './components/dashboard/main-view/maps/pins/pins.component';
+import { CreateOrEditComponent } from './components/dashboard/main-view/stores/create-or-edit/create-or-edit.component';
 
 @NgModule({
 declarations: [
@@ -65,13 +67,17 @@ declarations: [
     AdvancedCustomizationComponent,
     SaveOptionsComponent,
     ModalComponent,
-    ThemesListComponent,
-    PinsListComponent,
-    StoreTableComponent
+
+    StoreTableComponent,
+
+    ThemesComponent,
+
+    PinsComponent,
+
+    CreateOrEditComponent
 ],
 entryComponents: [
-    ThemesListComponent,
-    PinsListComponent
+    // Add components for modal here
 ],
 imports: [
     BrowserModule,
@@ -80,7 +86,8 @@ imports: [
     HttpClientModule,
     AgmCoreModule.forRoot({
         apiKey: environment.googleDevAPIKey
-    })
+    }),
+    MDBBootstrapModule.forRoot()
 ],
 providers: [
     {

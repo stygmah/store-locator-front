@@ -22,11 +22,26 @@
     font-size: 25px;
     color: white;
     display: block;
+    font-size: 125%;
 }
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
     color: $light;
+}
+
+
+img{
+    max-width: 150px;
+    border-left: auto;
+    border-right: auto;
+}
+
+.bottom-text{
+    position: absolute;
+    bottom: 0;
+    font-size: 60%;
+
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

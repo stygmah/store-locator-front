@@ -1,50 +1,28 @@
 <!--Sliders-->
-<form [formGroup]="slidersForm">
+<form [formGroup]="slidersForm" class="card">
     <!--Labels-->
+    <div class="card-header">
+        <h5>Elements shown</h5>
+    </div>
 
-    <h6>Elements</h6>
-    <div>
-        <label>Labels</label>
-        <input type="range" class="custom-range" step="33" min="1" formControlName="labels">
-        <p class="slider-effect-message text-center"><i class="text-secondary"> &nbsp; Only show countries </i></p>
-    </div>
-    {{labelSliderValue}}
-    <!--Landmarks-->
-    <div>
-        <label>Landmarks</label>
-        <input type="range" class="custom-range" step="33" min="1" formControlName="landmarks">
-        <p class="slider-effect-message text-center"><i class="text-secondary"> &nbsp; Show only parks </i></p>
-    </div>
-    <!--Roads-->
-    <div>
-        <label>Roads</label>
-        <input type="range" class="custom-range" step="33" min="1" formControlName="roads">
-        <p class="slider-effect-message text-center"><i class="text-secondary"> &nbsp; Remove road labels</i></p>
+    <div class="card-body">
+        <div>
+            <label  class="small">Labels</label>
+            <input type="range" class="custom-range" step="33" min="1" formControlName="labels">
+            <p class="mb-1 text-center small"><i class="text-light"> &nbsp; Only show countries </i></p>
+        </div>
+        {{labelSliderValue}}
+        <!--Landmarks-->
+        <div>
+            <label  class="small">Landmarks</label>
+            <input type="range" class="custom-range" step="33" min="1" formControlName="landmarks">
+            <p class="mb-1 text-center small"><i class="text-light"> &nbsp; Show only parks </i></p>
+        </div>
+        <!--Roads-->
+        <div>
+            <label class="small">Roads</label>
+            <input type="range" class="custom-range" step="33" min="1" formControlName="roads">
+            <p class="mb-1 text-center small"><i class="text-light"> &nbsp; Remove road labels</i></p>
+        </div>
     </div>
 </form>
-<!--Themes-->
-<div>
-    <h6>Theme</h6>
-    <div class="row">
-        <div class="col-md-5">
-            <img class="map-template-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQib8MRLc2zYBGevC301KCtO8MS1nx82Y8wdY9BJKc_lM1_pPZS&usqp=CAU">
-        </div>
-        <div class="col-md-7 text-center">
-            <p>Custom theme</p>
-            <button class="text-right btn-primary btn-md" (click)="showModalThemes()">Change theme</button>
-        </div>
-    </div>
-</div>
-<!--Themes-->
-<div class=" mt-4">
-    <h6>Theme</h6>
-    <div class="row">
-        <div class="col-md-5">
-            <img class="map-template-img" src="http://maps.google.com/mapfiles/ms/icons/blue-dot.png">
-        </div>
-        <div class="col-md-7 text-center">
-            <p>Custom theme</p>
-            <button class="text-right btn-primary btn-md"  (click)="showModalMarkers()">Change theme</button>
-        </div>
-    </div>
-</div>

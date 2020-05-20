@@ -1,0 +1,183 @@
+
+<form class="container card-box p-5" [formGroup]="storeForm">
+    <div class="row p-3">
+        <h2 class="stick-left mr-auto d-inline-block">New Store</h2>
+    </div>
+    <div class="row">
+        <!--Basic Information-->
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Basic Information
+                </div>
+                <div class="card-body">
+                    
+
+
+                    <!-- Name-->
+                    <div class="row">
+                        <!-- Material input -->
+                        <label class="col-lg-3 col-form-label">Name*</label>
+                        <div class="col-lg-9">
+                            <div class="md-form mt-0">
+                            <input type="text" class="form-control form-control-line" placeholder="Store name" formControlName="name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address-->
+                    <div class="row">
+                        <!-- Material input -->
+                        <label class="col-lg-3 col-form-label">Address*</label>
+                        <div class="col-lg-9">
+                            <div class="md-form mt-0">
+                            <input type="text" class="form-control form-control-line" placeholder="Address Line 2" formControlName="address">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- City and country -->
+                    <div class="row">
+                        <!-- Material input -->
+                        <label class="col-lg-2 col-form-label">Country*</label>
+                        <div class="col-lg-4">
+                            <div class="md-form mt-0">
+                            <input type="text" class="form-control form-control-line" placeholder="phone" formControlName="country">
+                            </div>
+                        </div>
+                        <label class="col-lg-2 col-form-label">City*</label>
+                        <div class="col-lg-4">
+                            <div class="md-form mt-0">
+                            <input type="text" class="form-control form-control-line" placeholder="email" formControlName="city">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone and email -->
+                    <div class="row">
+                        <!-- Material input -->
+                        <label class="col-lg-2 col-form-label">Phone</label>
+                        <div class="col-lg-4">
+                            <div class="md-form mt-0">
+                            <input type="text" class="form-control form-control-line" placeholder="phone" formControlName="phone">
+                            </div>
+                        </div>
+                        <label class="col-lg-2 col-form-label">Email</label>
+                        <div class="col-lg-4">
+                            <div class="md-form mt-0">
+                            <input type="text" class="form-control form-control-line" placeholder="email" formControlName="email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Website -->
+                    <div class="row">
+                        <!-- Material input -->
+                        <label class="col-lg-3 col-form-label">Website</label>
+                        <div class="col-lg-9">
+                            <div class="md-form mt-0">
+                            <input type="text" class="form-control form-control-line" placeholder="site" formControlName="website">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="row">
+                        <!-- Material input -->
+                        <label class="col-lg-3 col-form-label">Description</label>
+                        <div class="col-lg-9">
+                            <div class="md-form mt-0">
+                                <textarea class="form-control form-control-line" id="exampleFormControlTextarea5" rows="4" formControlName="description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Geolocation
+                </div>
+                <div class="card-body">
+
+
+                    <div class="row">
+                        <!-- Material input -->
+                        <div class="ml-3">
+                            <input type="checkbox" formControlName="geolocationActive">
+                            <label class="col-form-label ml-3">Use Geolocation</label>
+                        </div>
+                        <label class="col-lg-2 col-form-label text-right">Lat</label>
+                        <div class="col-lg-2">
+                            <div class="md-form mt-0">
+                            <input type="text" class="form-control h-25" placeholder="lat" geolocationActive="lat">
+                            </div>
+                        </div>
+                        <label class="col-lg-2 col-form-label text-right">Lon</label>
+                        <div class="col-lg-2">
+                            <div class="md-form mt-0">
+                            <input type="text" class="form-control h-25" placeholder="lon" geolocationActive="lon">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <!--IMAGE-->
+            <div class="card mb-4">
+                <div class="card-header">
+                    Image
+                </div>
+                <img src="https://enlavaguada.com/wp-content/uploads/2016/10/Tea-shop.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="d-inline-block d-inline-block">
+                        <button class="btn btn-outline-primary btn-md">Import from CSV</button>
+                        <button class="btn btn-primary paired-button-right"><b>+</b></button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    Categories
+                </div>
+                <div class="card-body text-center">
+                    <!--Selection-->
+                    <div class="row px-3 mb-2">
+                        <label  class="mdall d-block col-md-12">Category 1</label>
+                        <select class="mdb-select md-form my-0 ml-2 col-md-12" style="width: 50px !important">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                    <!--Selection-->
+                    <div class="row px-3 mb-2">
+                        <label  class="mdall d-block col-md-12">Category 1</label>
+                        <select class="mdb-select md-form my-0 ml-2 col-md-12" style="width: 50px !important">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

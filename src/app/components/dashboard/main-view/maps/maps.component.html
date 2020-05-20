@@ -1,25 +1,26 @@
 
 <div class="container p-5 card-box">
     <h3>Map</h3>
-    <div class="row">
-    </div>
-    
-
     <!--Row-->
     <div class="row">
-        <div class="shadow-sm p-3 mb-3 bg-white card col-sm-6">
+        <div class="shadow-sm pt-3 mb-3 card col-sm-6 mt-2 map-card">
             <agm-map [latitude]="lat" [zoom]="zoom" [streetViewControl]="false" [longitude]="lng" [styles]="styles" class="map" >
                 <agm-marker  [latitude]="lat" [longitude]="lng" [iconUrl]="'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'"></agm-marker>
               </agm-map>
         </div>
-        <div class="shadow-sm p-3 mb-3 bg-white col-sm-5 left-box options">
+        <div class=" col-sm-6">
             <div class="col-sm-6"></div>
-            <nav class="nav nav-tabs map-menu border-bottom-0">
+            <nav class="nav map-menu border-bottom-0">
                 <a class="nav-link pl-3" routerLinkActive="active" routerLink="general-settings">General</a>
+                <a class="nav-link pl-3" routerLinkActive="active" routerLink="themes">Themes</a>
+                <a class="nav-link pl-3" routerLinkActive="active" routerLink="pins">Pin</a>
                 <a class="nav-link" routerLinkActive="active" routerLink="customization">Customization</a>
                 <a class="nav-link" routerLinkActive="active" routerLink="advanced">Advanced features</a>
             </nav>
-            <router-outlet></router-outlet>
+
+            <div class="pl-3">
+                <router-outlet></router-outlet>
+            </div>
         </div>
     </div>
 </div>

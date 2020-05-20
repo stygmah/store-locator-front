@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
+import { SaveService } from 'src/app/services/save.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -9,7 +10,10 @@ import { DOCUMENT } from '@angular/platform-browser';
 })
 export class DashboardComponent implements OnInit {
 
-    constructor(@Inject(DOCUMENT) private _document ) { }
+    constructor(
+        @Inject(DOCUMENT) private _document,
+        private saveService: SaveService
+    ) { }
 
     ngOnInit() {
         this._document.body.classList.add('white-body');
@@ -18,6 +22,11 @@ export class DashboardComponent implements OnInit {
     ngOnDestroy() {
         // remove the class form body tag
         this._document.body.classList.remove('white-body');
+    }
+
+
+    resetSaveState(){
+        this.saveService.idle();
     }
 
 }

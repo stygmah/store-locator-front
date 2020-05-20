@@ -2,7 +2,7 @@
     <app-side-menu></app-side-menu>
     <app-save-options (save)="save()" (discard)="reset()"></app-save-options>
     <div class="main-view">
-        <router-outlet></router-outlet>
+        <router-outlet (activate)="resetSaveState()"></router-outlet>
     </div>
 
 </div>
