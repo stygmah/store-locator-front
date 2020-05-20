@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EstablishmentService } from 'src/app/services/establishment.service';
+import { Establishment } from 'src/app/models/Establishment.model';
 
 @Component({
   selector: 'app-stores',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoresComponent implements OnInit {
 
-  constructor() { }
+    private establishments: any;
+    private totalCount: number;
 
-  ngOnInit() {
-  }
+    constructor(
+        private establishmentService: EstablishmentService
+    ) { }
+
+    ngOnInit() {
+        this.getEstablishmentsList('name', 'asc', 1, 5);
+    }
+
+    getEstablishmentsList(field: string, direction: string, page: number, pageSize: number) {
+        this.establishmentService.getEstablishmentsList(field, direction, page, pageSize).subscribe((list) => {
+            this.establishments = list.data;
+            this.totalCount = list.count;
+        });
+    }
+
+    refreshTable(infoFromTable: any) {
+        this.getEstablishmentsList(infoFromTable.field, infoFromTable.direction, infoFromTable.page, infoFromTable.pageSize);
+    }
 
 }

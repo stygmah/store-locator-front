@@ -1,0 +1,13 @@
+@import '../../../../../../vars.scss';
+
+.arrows:disabled{
+    color: red !important;
+}
+
+.page-item:hover{
+    background-color: $light;
+}
+
+.selected{
+    background-color: $light;
+}

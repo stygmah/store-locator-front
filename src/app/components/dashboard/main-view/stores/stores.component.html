@@ -1,7 +1,6 @@
 
 
 
-
 <div class="container card-box p-5">
     <div class="row p-3">
         <h2 class="stick-left mr-auto d-inline-block">Account</h2>
@@ -13,10 +12,10 @@
 
     <!-- Table with panel -->
 <div class="card card-cascade narrower">
-  
+
 
     <div class="table-wrapper">
-        <app-store-table></app-store-table>
+        <app-store-table *ngIf="establishments && establishments.length>0" [list]="establishments" [count]="totalCount" (getNewList)="refreshTable($event)"></app-store-table>
     </div>
 
   

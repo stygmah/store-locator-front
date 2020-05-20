@@ -23,22 +23,22 @@
               <label class="form-check-label" for="checkbox" class="mr-2 label-table"></label>
             </th>
             <th class="th-lg">
-              <a>Name
+              <a (click)="changeSort('name')">Name
                 <i class="fa fa-sort ml-1"></i>
               </a>
             </th>
             <th class="th-lg">
-              <a href="">Address
+              <a (click)="changeSort('address')" >Address
                 <i class="fa fa-sort ml-1"></i>
               </a>
             </th>
             <th class="th-lg">
-              <a href="">City
+              <a  (click)="changeSort('city')">City
                 <i class="fa fa-sort ml-1"></i>
               </a>
             </th>
             <th class="th-lg">
-              <a href="">Country
+              <a  (click)="changeSort('country')">Country
                 <i class="fa fa-sort ml-1"></i>
               </a>
             </th>
@@ -50,60 +50,18 @@
 
         <!--Table body-->
         <tbody>
-          <tr>
+          <tr *ngFor="let establishment of list">
             <th scope="row">
               <input class="form-check-input" type="checkbox" id="checkbox1">
-              <label class="form-check-label" for="checkbox1" class="label-table"></label>
             </th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <input class="form-check-input" type="checkbox" id="checkbox2">
-              <label class="form-check-label" for="checkbox2" class="label-table"></label>
-            </th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Jacob</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <input class="form-check-input" type="checkbox" id="checkbox3">
-              <label class="form-check-label" for="checkbox3" class="label-table"></label>
-            </th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td>Larry</td>
-            <td>@twitter</td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <input class="form-check-input" type="checkbox" id="checkbox4">
-              <label class="form-check-label" for="checkbox4" class="label-table"></label>
-            </th>
-            <td>Paul</td>
-            <td>Topolski</td>
-            <td>@P_Topolski</td>
-            <td>Paul</td>
-            <td>@P_Topolski</td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <input class="form-check-input" type="checkbox" id="checkbox5">
-              <label class="form-check-label" for="checkbox5" class="label-table"></label>
-            </th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td>Larry</td>
-            <td>@twitter</td>
+            <td>{{establishment.name.length > 15 ?  establishment.name.substring(0,15) +'...' : establishment.name}}</td><!--Make it responsive, save factor in variable-->
+            <td>{{establishment.address.length > 20 ?  establishment.address.substring(0,20) +'...' : establishment.address}}</td>
+            <td>{{establishment.city.length > 10 ?  establishment.city.substring(0,10) +'...' : establishment.city}}</td>
+            <td>{{establishment.country.length > 10 ?  establishment.country.substring(0,10) +'...' : establishment.country}}</td>
+            <td class="py-2 text-right">
+                <button class="btn-sm btn-outline-primary py-1"><i class="fa fa-eye"></i></button>
+                <button class="btn-sm btn-primary py-1 ml-2"><i class="fa fa-pencil"></i></button>
+            </td>
           </tr>
         </tbody>
         <!--Table body-->
@@ -115,16 +73,18 @@
     <div class="d-inline-block mx-auto">    
         <ul class="pagination py-1 mb-0">
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
+          <a class="page-link arrows" aria-label="Previous" (click)="goToPage(page-1)" [class.disabled]="!(page>1)">
             <span aria-hidden="true">&laquo;</span>
             <span class="sr-only">Previous</span>
           </a>
         </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" *ngIf="page > 2" (click)="goToPage(page-2)">{{page-2}}</a></li>
+        <li class="page-item"><a class="page-link" *ngIf="page > 1" (click)="goToPage(page-1)">{{page-1}}</a></li>
+        <li class="page-item selected"><a class="page-link" >{{page}}</a></li>
+        <li class="page-item"><a class="page-link" *ngIf="page < pages" (click)="goToPage(page+1)">{{page+1}}</a></li>
+        <li class="page-item"><a class="page-link" *ngIf="page < pages-1" (click)="goToPage(page+2)">{{page+2}}</a></li>
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
+          <a class="page-link arrows" aria-label="Next" (click)="goToPage(page+1)" [class.disabled]="!(page < pages)">
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>
           </a>

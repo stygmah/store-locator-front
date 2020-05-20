@@ -4,6 +4,7 @@ import { SaveService } from 'src/app/services/save.service';
 import { SAVE_STATE } from 'src/app/enums/save-state.enum';
 import { Establishment } from 'src/app/models/Establishment.model';
 import { EstablishmentService } from 'src/app/services/establishment.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-or-edit',
@@ -18,7 +19,8 @@ export class CreateOrEditComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private saveService: SaveService,
-        private establishmentService: EstablishmentService
+        private establishmentService: EstablishmentService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -71,8 +73,8 @@ export class CreateOrEditComponent implements OnInit {
         //validate form
         this.saveService.loading();
         this.establishmentService.addOrEditNewEstablishment(this.formToEstablishment()).subscribe((result)=>{
-
             this.saveService.idle();
+            this.router.navigate(['/stores']);
         });
     }
 
