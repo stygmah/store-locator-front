@@ -1,0 +1,25 @@
+<div class="card animated fadeInDown w-50 mx-auto">
+    <div class="card-header">
+        <h5>{{establishment.name}}</h5>
+    </div>
+    <div class="card-body p-0">
+        <img [src]="establishment.imageUrl ? getImgUrl(establishment.imageUrl ) : 'https://enlavaguada.com/wp-content/uploads/2016/10/Tea-shop.jpg'" class="card-img-top " alt="...">
+        <div class="my-3 mx-3 text-left">
+            <span class="badge badge-default">Default</span>
+            <span class="badge badge-default">Default</span>
+            <span class="badge badge-default">Default</span>
+            <span class="badge badge-default">Default</span>
+            <p class="mt-5">{{establishment.address}}</p>
+            <p>{{establishment.city}}</p>
+            <p>{{establishment.country}}</p>
+        </div>
+        <div class="my-3 mx-3 text-left">
+            <p>{{establishment.phone}}</p>
+            <p>{{establishment.email}}</p>
+            <p>{{establishment.website}}</p>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</button>
+    </div>
+</div>

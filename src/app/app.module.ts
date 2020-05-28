@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +39,9 @@ import { StoreTableComponent } from './components/dashboard/main-view/stores/sto
 import { ThemesComponent } from './components/dashboard/main-view/maps/themes/themes.component';
 import { PinsComponent } from './components/dashboard/main-view/maps/pins/pins.component';
 import { CreateOrEditComponent } from './components/dashboard/main-view/stores/create-or-edit/create-or-edit.component';
+import { FileDropComponent } from './components/common/file-drop/file-drop.component';
+import { StoreDisplayComponent } from './components/dashboard/main-view/stores/store-display/store-display.component';
+import { CountryPickerComponent } from './components/common/country-picker/country-picker.component';
 
 @NgModule({
 declarations: [
@@ -67,27 +70,29 @@ declarations: [
     AdvancedCustomizationComponent,
     SaveOptionsComponent,
     ModalComponent,
-
     StoreTableComponent,
-
     ThemesComponent,
-
     PinsComponent,
-
-    CreateOrEditComponent
+    CreateOrEditComponent,
+    FileDropComponent,
+    StoreDisplayComponent,
+    CountryPickerComponent
 ],
 entryComponents: [
     // Add components for modal here
+    FileDropComponent,
+    StoreDisplayComponent
 ],
 imports: [
     BrowserModule,
+    FormsModule ,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
         apiKey: environment.googleDevAPIKey
     }),
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
 ],
 providers: [
     {

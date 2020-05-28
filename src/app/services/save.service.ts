@@ -7,7 +7,7 @@ import { SAVE_STATE } from '../enums/save-state.enum';
 })
 export class SaveService {
 
-    public state: BehaviorSubject<SAVE_STATE>;
+    readonly state: BehaviorSubject<SAVE_STATE>;
 
     constructor() {
         this.state = new BehaviorSubject(SAVE_STATE.IDLE);

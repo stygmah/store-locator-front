@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     }
 
     private success() {
-        console.log();
+
     }
 
     private login() {
@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
             this.loginForm.controls.rememberMe.value
         ).subscribe( response => {
             this.router.navigate(['']);
-            console.log(response);
         }, err => {
             this.loading = false;
             this.unauthorized = true;

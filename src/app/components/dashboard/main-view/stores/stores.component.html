@@ -15,7 +15,14 @@
 
 
     <div class="table-wrapper">
-        <app-store-table *ngIf="establishments && establishments.length>0" [list]="establishments" [count]="totalCount" (getNewList)="refreshTable($event)"></app-store-table>
+        <app-store-table 
+            *ngIf="establishments && establishments.length>0" 
+            [list]="establishments" 
+            [count]="totalCount" 
+            (getNewList)="refreshTable($event)" 
+            (delete)="delete($event)"
+            (viewEstablishment)="openEstablishmentModal($event)"
+            ></app-store-table>
     </div>
 
   

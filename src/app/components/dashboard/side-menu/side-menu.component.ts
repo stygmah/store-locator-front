@@ -15,7 +15,6 @@ export class SideMenuComponent implements OnInit {
     }
 
     logout() {
-        console.log('d');
         this.authservice.logout();
         this.router.navigate(['/login']);
     }

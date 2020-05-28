@@ -12,8 +12,6 @@
                 </div>
                 <div class="card-body">
                     
-
-
                     <!-- Name-->
                     <div class="row">
                         <!-- Material input -->
@@ -135,18 +133,17 @@
                 <div class="card-header">
                     Image
                 </div>
-                <img src="https://enlavaguada.com/wp-content/uploads/2016/10/Tea-shop.jpg" class="card-img-top" alt="...">
+                <img [src]="currentImg ? getImgUrl(currentImg) : 'https://enlavaguada.com/wp-content/uploads/2016/10/Tea-shop.jpg'" class="card-img-top" alt="...">
                 <div class="card-body">
                     <div class="d-inline-block d-inline-block">
-                        <button class="btn btn-outline-primary btn-md">Import from CSV</button>
-                        <button class="btn btn-primary paired-button-right"><b>+</b></button>
+                        <button class="btn btn-outline-primary btn-md" (click)="openUploadImg()">Change Img</button>
+                        <button class="btn btn-outline-warning ml-2"><b>Remove Image</b></button>
                     </div>
                 </div>
             </div>
 
 
-
-
+            
             <div class="card mb-4">
                 <div class="card-header">
                     Categories
@@ -173,7 +170,7 @@
                         </select>
                     </div>
 
-
+{{currentImg}}
 
                 </div>
             </div>
