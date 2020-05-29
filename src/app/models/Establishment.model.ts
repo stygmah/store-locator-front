@@ -2,7 +2,7 @@ export class Establishment {
     _id?: string;
     name: string;
     address: string;
-    country: string;
+    country: any;//TODO: Create Model
     city: string;
     phone?: string;
     email?: string;

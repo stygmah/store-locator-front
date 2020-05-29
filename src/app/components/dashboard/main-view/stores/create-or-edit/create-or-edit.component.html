@@ -21,7 +21,12 @@
                             <input type="text" class="form-control form-control-line" placeholder="Store name" formControlName="name">
                             </div>
                         </div>
+
+
+
+
                     </div>
+
 
                     <!-- Address-->
                     <div class="row">
@@ -37,10 +42,9 @@
                     <!-- City and country -->
                     <div class="row">
                         <!-- Material input -->
-                        <label class="col-lg-2 col-form-label">Country*</label>
                         <div class="col-lg-4">
                             <div class="md-form mt-0">
-                            <input type="text" class="form-control form-control-line" placeholder="phone" formControlName="country">
+                                <app-country-picker (recieveValue)="setCountry($event)"></app-country-picker>
                             </div>
                         </div>
                         <label class="col-lg-2 col-form-label">City*</label>
@@ -150,27 +154,13 @@
                 </div>
                 <div class="card-body text-center">
                     <!--Selection-->
-                    <div class="row px-3 mb-2">
-                        <label  class="mdall d-block col-md-12">Category 1</label>
-                        <select class="mdb-select md-form my-0 ml-2 col-md-12" style="width: 50px !important">
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                        </select>
-                    </div>
-                    <!--Selection-->
-                    <div class="row px-3 mb-2">
-                        <label  class="mdall d-block col-md-12">Category 1</label>
-                        <select class="mdb-select md-form my-0 ml-2 col-md-12" style="width: 50px !important">
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                        </select>
-                    </div>
+                    <mat-form-field>
+                        <mat-label>Select categories</mat-label>
+                        <mat-select formControlName="categories" multiple>
+                          <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
 
-{{currentImg}}
 
                 </div>
             </div>

@@ -28,6 +28,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { GeneralComponent } from './components/dashboard/main-view/account/general/general.component';
 import { BillingInfoComponent } from './components/dashboard/main-view/account/billing-info/billing-info.component';
 import { ApiKeysComponent } from './components/dashboard/main-view/account/api-keys/api-keys.component';
+import { MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { environment } from 'src/environments/environment';
 import { GeneralSettingsComponent } from './components/dashboard/main-view/maps/general-settings/general-settings.component';
@@ -42,6 +44,7 @@ import { CreateOrEditComponent } from './components/dashboard/main-view/stores/c
 import { FileDropComponent } from './components/common/file-drop/file-drop.component';
 import { StoreDisplayComponent } from './components/dashboard/main-view/stores/store-display/store-display.component';
 import { CountryPickerComponent } from './components/common/country-picker/country-picker.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 declarations: [
@@ -93,6 +96,11 @@ imports: [
         apiKey: environment.googleDevAPIKey
     }),
     MDBBootstrapModule.forRoot(),
+    BrowserAnimationsModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    NgxMatSelectSearchModule,
 ],
 providers: [
     {

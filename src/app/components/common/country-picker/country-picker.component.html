@@ -1,9 +1,16 @@
-<select class="mdb-select md-form" searchable="Search here..">
-    <option value="" disabled selected>Choose your country</option>
-    <option value="1">USA</option>
-    <option value="2">Germany</option>
-    <option value="3">France</option>
-    <option value="3">Poland</option>
-    <option value="3">Japan</option>
-</select>
-<label class="mdb-main-label">Label example</label>
+<mat-form-field>
+    <mat-select 
+    [formControl]="selectCtrl" 
+    placeholder="Country" 
+    #singleSelect>
+      <mat-option>
+        <ngx-mat-select-search 
+        [formControl]="searchCtrl" 
+        placeholderLabel="Find country..." 
+        noEntriesFoundLabel="'no matching country found'"></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let country of countries" [value]="country">
+        {{country.name}} - {{country.code}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>

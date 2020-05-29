@@ -27,6 +27,8 @@ export class CreateOrEditComponent implements OnInit {
     private currentImg: string;
     private initialObject: any;
 
+    private categories: string[];
+
     constructor(
         private formBuilder: FormBuilder,
         private saveService: SaveService,
@@ -43,7 +45,7 @@ export class CreateOrEditComponent implements OnInit {
         this.formSubscriptions();
         this.listenToSaveEvents();
         this.imgUploadSubscription();
-
+        this.categories = ['Category1', 'Category2', 'category3'];
 
 
         this.activatedRoute.params.pipe(
@@ -62,7 +64,7 @@ export class CreateOrEditComponent implements OnInit {
         this.storeForm = this.formBuilder.group({
             name: [values ? values.name : '', [Validators.required, Validators.email]],
             address: [values ? values.address : '', Validators.required],
-            country: [values ? values.country : '', Validators.required],
+            country: [values ? values.country : null, Validators.required],
             city: [values ? values.city : '', Validators.required],
             phone: values ? values.phone : '',
             email: [values ? values.email : '', Validators.email],
@@ -182,6 +184,9 @@ export class CreateOrEditComponent implements OnInit {
         this.uploadService.deleteFile(img).subscribe((res) =>{/**TODO: Handle errors */})
     }
 
+    setCountry(country) {
+        this.form.country.value = country;
+    }
 
 
     //End
