@@ -28,7 +28,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { GeneralComponent } from './components/dashboard/main-view/account/general/general.component';
 import { BillingInfoComponent } from './components/dashboard/main-view/account/billing-info/billing-info.component';
 import { ApiKeysComponent } from './components/dashboard/main-view/account/api-keys/api-keys.component';
-import { MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { environment } from 'src/environments/environment';
@@ -101,6 +101,8 @@ imports: [
     MatSelectModule,
     MatFormFieldModule,
     NgxMatSelectSearchModule,
+    MatInputModule,
+    MatCheckboxModule
 ],
 providers: [
     {

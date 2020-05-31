@@ -57,7 +57,7 @@
             <td>{{establishment.name.length > 15 ?  establishment.name.substring(0,15) +'...' : establishment.name}}</td><!--Make it responsive, save factor in variable-->
             <td>{{establishment.address.length > 20 ?  establishment.address.substring(0,20) +'...' : establishment.address}}</td>
             <td>{{establishment.city.length > 10 ?  establishment.city.substring(0,10) +'...' : establishment.city}}</td>
-            <td>{{establishment.country.length > 10 ?  establishment.country.substring(0,10) +'...' : establishment.country}}</td>
+            <td>{{establishment.country.code.length > 10 ?  establishment.country.code.substring(0,10) +'...' : establishment.country.code}}</td>
             <td class="py-2 text-right">
                 <button class="btn-sm btn-outline-primary py-1" (click)="sendEstablishmentToModal(establishment)"><i class="fa fa-eye"></i></button>
                 <button class="btn-sm btn-primary py-1 ml-2" routerLink="{{'/edit-store/'+establishment._id}}"><i class="fa fa-pencil"></i></button>

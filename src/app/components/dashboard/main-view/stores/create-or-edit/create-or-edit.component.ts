@@ -29,6 +29,8 @@ export class CreateOrEditComponent implements OnInit {
 
     private categories: string[];
 
+    private geolocation: boolean;
+
     constructor(
         private formBuilder: FormBuilder,
         private saveService: SaveService,
@@ -94,6 +96,7 @@ export class CreateOrEditComponent implements OnInit {
     }
 
     private formSubscriptions() {
+        console.log(this.form.geolocationActive.value)
         this.storeForm.valueChanges.subscribe((val) => this.saveService.changed());
     }
 
@@ -128,16 +131,14 @@ export class CreateOrEditComponent implements OnInit {
     private saveStore() {
         //validate form
         this.saveService.loading();
-        console.log((this.initialObject && (this.currentImg !== this.initialObject.imageUrl)))
         forkJoin(
             [
                 this.establishmentService.addOrEditNewEstablishment(this.formToEstablishment(), this.storeId),
                 // tslint:disable-next-line: max-line-length
-                (this.storeId && (this.currentImg !== this.initialObject.imageUrl) || !!this.initialObject.imageUrl) ? this.uploadService.deleteFile(this.initialObject.imageUrl) : of(0)
+                (this.storeId && (this.currentImg !== this.initialObject.imageUrl) ) && !!this.initialObject.imageUrl ? this.uploadService.deleteFile(this.initialObject.imageUrl) : of(0)
             ]
         )
         .subscribe((result) => {
-            //TODO, reactive delete initial image if not the sames as initially
             this.saveService.idle();
             this.router.navigate(['/stores']);
         });
@@ -181,11 +182,12 @@ export class CreateOrEditComponent implements OnInit {
 
     deleteImg(img: string) {
         if(!this.initialObject || img === this.initialObject.imageUrl || !img) { return; }
+        console.log(img)
         this.uploadService.deleteFile(img).subscribe((res) =>{/**TODO: Handle errors */})
     }
 
     setCountry(country) {
-        this.form.country.value = country;
+        this.form.country.setValue(country);
     }
 
 
