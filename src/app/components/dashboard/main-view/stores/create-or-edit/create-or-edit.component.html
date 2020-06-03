@@ -1,7 +1,7 @@
 
 <form class="container card-box p-5" [formGroup]="storeForm">
     <div class="row p-3">
-        <h2 class="stick-left mr-auto d-inline-block">New Store</h2>
+        <h2 class="stick-left mr-auto d-inline-block"><span *ngIf="!storeId">New</span><span *ngIf="storeId">Edit</span> Store</h2>
     </div>
     <div class="row">
         <!--Basic Information-->
@@ -105,6 +105,22 @@
 
                     </div>
                 </div>
+
+                <div *ngIf="form.geolocationActive.value">
+                    <agm-map [latitude]="parseCoord(form.lat.value)" [longitude]="parseCoord(form.lon.value)" [zoom]="16" [streetViewControl]="false" class="map" >
+                        <agm-marker  [latitude]="form.lat.value" [longitude]="form.lon.value" [iconUrl]="'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'"></agm-marker>
+                    </agm-map>
+                </div>
+
+                <div>
+                    <!--TODO: Google Maps api call listneing to form changes for adress driven-->
+                </div>
+
+
+
+
+
+
             </div>
         </div>
 
@@ -114,11 +130,19 @@
                 <div class="card-header">
                     Image
                 </div>
-                <img [src]="currentImg ? getImgUrl(currentImg) : 'https://enlavaguada.com/wp-content/uploads/2016/10/Tea-shop.jpg'" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <div class="d-inline-block d-inline-block">
-                        <button class="btn btn-outline-primary btn-md" (click)="openUploadImg()">Change Img</button>
-                        <button class="btn btn-outline-warning ml-2"><b>Remove Image</b></button>
+                <div *ngIf="currentImg">
+                    <img [src]="currentImg ? getImgUrl(currentImg) : 'https://enlavaguada.com/wp-content/uploads/2016/10/Tea-shop.jpg'" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="d-inline-block d-inline-block">
+                            <button class="btn btn-outline-primary btn-md" (click)="openUploadImg()">Change Img</button>
+                            <button class="btn btn-outline-warning ml-2"><b>Remove Image</b></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body " *ngIf="!currentImg">
+                    <div class="text-center">
+                        <button class="btn btn-outline-primary btn-md mx-auto" (click)="openUploadImg()">Add an Image</button>
                     </div>
                 </div>
             </div>

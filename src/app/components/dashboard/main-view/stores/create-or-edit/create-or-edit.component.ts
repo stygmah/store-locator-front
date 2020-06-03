@@ -197,4 +197,8 @@ export class CreateOrEditComponent implements OnInit {
         this.uploadSubscription.unsubscribe();
     }
 
+    private parseCoord(coord){
+        return parseFloat(coord);
+    }
+
 }
