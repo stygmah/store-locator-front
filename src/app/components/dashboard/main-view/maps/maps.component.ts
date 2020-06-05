@@ -8,9 +8,9 @@ import { MapEditorService } from 'src/app/services/map-editor.service';
   styleUrls: ['./maps.component.scss']
 })
 export class MapsComponent implements OnInit {
-    lat = 37.803180;
-    lng = -122.408321;
-    zoom = 15;
+    private lat = 37.803180;
+    private lng = -122.408321;
+    private zoom = 15;
     private styles: any[];
     private stylesObject: any;
 
@@ -25,6 +25,9 @@ export class MapsComponent implements OnInit {
 
         this.mapEditorService.allMapOptionsArray.subscribe((e) => {
             this.styles = e;
+        });
+        this.mapEditorService.initialValues.subscribe((e) => {
+            this.zoom = e.zoom;
         });
     }
 

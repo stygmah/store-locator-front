@@ -11,12 +11,11 @@ import { SLIDER_VALUES_4 } from '../enums/custom-basic-sliders.enum';
 })
 export class MapEditorService {
 
-    public allMapOptionsArray: BehaviorSubject<MapProperty[]>;
+    readonly allMapOptionsArray: BehaviorSubject<MapProperty[]>;
+    public initialValues: BehaviorSubject<any>;
 
     private optionsRefValue: any;
     private slidersRefValue: any;
-    private markerRefValue: any;
-    private themeRefValue: any;
 
     labelObject: MapPropertyExtended[];
     landmarkObject: MapPropertyExtended[];
@@ -26,6 +25,8 @@ export class MapEditorService {
         private http: HttpClient
     ) {
         this.allMapOptionsArray = new BehaviorSubject([]);
+        this.initialValues = new BehaviorSubject({});
+
         this.initValues();
         this.initBlankSliderArrays();
     }
@@ -178,5 +179,12 @@ export class MapEditorService {
         this.roadObject = [];
         this.labelObject = [];
         this.landmarkObject = [];
+    }
+
+    ///
+    /// Initial Values
+    ///
+    pushInitialValues(value:{location: string, zoom: number, coord?: any}) {
+        this.initialValues.next(value);
     }
 }

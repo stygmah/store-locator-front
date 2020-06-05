@@ -1,49 +1,65 @@
-<!--Sliders-->
-<div class="card">
+<form [formGroup]="initialValues">
+    <!--Sliders-->
+<div class="card" >
     <!--Labels-->
     <div class="card-header">
         <h5>Initial Values</h5>
     </div>
     <div class="card-body">
+        <mat-radio-group
+        aria-labelledby="radio-group-label"
+        formControlName="location">
         <div>
             <div class="mb-4">
-                <input type="radio" ><label  class="ml-3">Store closest to user</label>
-                <br/>
+                <mat-radio-button class="radio-button" [value]="values.Closest">
+                    Simple
+                </mat-radio-button>
             </div>
         </div>
-        <!-- Stores-->
         <div>
             <div class="mb-4">
-                <input type="radio" ><label  class="ml-3">Default store</label>
+                <mat-radio-button class="radio-button" [value]="values.Store">
+                    Store closest to user
+                </mat-radio-button>
             </div>
-            <div class="col-sm-6 text-left">
-                <select class="custom-select custom-select-sm" ></select>
-            </div>
-            <br>
         </div>
         <!-- Defined values-->
         <div>
             <div class="mb-4">
-                <input type="radio" ><label  class="ml-3">Defined values</label>
+                <mat-radio-button class="radio-button" [value]="values.Defined">
+                    Defined values
+                </mat-radio-button>
                 <br/>
             </div>
-            <div>
-                <label class="col-md-4">Latitude</label>
-                <input type="text" class="col-md-4">
-            </div>
-            <div>
-                <label  class="col-md-4">Longitude</label>
-                <input type="text" class="col-md-4">
+            <div *ngIf="initialValues.controls.location.value === values.Defined" class="pl-5">
+
+                <mat-form-field class="w-25 mr-5">
+                    <mat-label>Latitude</mat-label>
+                    <input matInput formControlName="lat" placeholder="1.123">
+                </mat-form-field>
+                <mat-form-field class="w-25">
+                    <mat-label>Longitude</mat-label>
+                    <input matInput formControlName="lon" placeholder="1.123">
+                </mat-form-field>
+
             </div>
         </div>
-        <!--Zoom-->
-        <div>
-            <label class="col-md-4">Zoom</label>
-            <input type="range" class="custom-range col-md-5" step="0.1" max="50">
-            <input type="text" class="col-md-3 ml-3" style="width: 10px">
-        </div>
+    </mat-radio-group>
     </div>
 </div>
 
+<!--Sliders-->
+<div class="card mt-3">
+    <!--Labels-->
+    <div class="card-header">
+        <h5>Initial Zoom</h5>
+    </div>
+    <div class="card-body">
+        <div>
+            <mat-slider min="2" max="20" step="0.2" value="1" formControlName="zoom" [thumbLabel]="true" ></mat-slider>
+        </div>
 
+    </div>
+</div>
 
+</form>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SLIDER_VALUES_4 } from 'src/app/enums/custom-basic-sliders.enum';
 import { MapPropertyExtended, MapProperty } from 'src/app/map-utilities/map-property.class';
@@ -48,9 +48,6 @@ export class CustomComponent implements OnInit {
                     e.config.selectedSlidersValues.road
                 );
 
-                this.selectedTheme = e.config.theme;
-                this.selectedPointer = e.config.marker;//move out to own func
-
             });
         } else {
             this.slidersForm.controls.labels.setValue(this.mapEditorService.getSlidersRefValue().labels);
@@ -71,8 +68,4 @@ export class CustomComponent implements OnInit {
             this.mapEditorService.processRoadValue(value);
         });
     }
-
-
-
-
 }

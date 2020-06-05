@@ -3,6 +3,8 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
+import { MatRadioModule } from '@angular/material/radio';
+import {MatSliderModule} from '@angular/material/slider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +30,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { GeneralComponent } from './components/dashboard/main-view/account/general/general.component';
 import { BillingInfoComponent } from './components/dashboard/main-view/account/billing-info/billing-info.component';
 import { ApiKeysComponent } from './components/dashboard/main-view/account/api-keys/api-keys.component';
-import { MatFormFieldModule, MatSelectModule, MatInputModule, MatCheckboxModule } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule, MatInputModule, MatCheckboxModule, MatRadioButton } from '@angular/material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { environment } from 'src/environments/environment';
@@ -102,7 +104,9 @@ imports: [
     MatFormFieldModule,
     NgxMatSelectSearchModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSliderModule
 ],
 providers: [
     {
