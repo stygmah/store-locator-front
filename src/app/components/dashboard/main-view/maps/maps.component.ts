@@ -30,6 +30,7 @@ export class MapsComponent implements OnInit {
 
     ngOnInit() {
         this.loading = true;
+        this.saveService.changed();
         this.mapEditorService.getFullCustomConfig().subscribe((mapObject) => {
 
             this.initialObject = mapObject;
@@ -110,7 +111,7 @@ export class MapsComponent implements OnInit {
     /// Save functions
     ///
     private save(){
-        this.mapEditorService.saveMapCustomization('');
+        this.mapEditorService.saveMapCustomization().subscribe(console.log);
     }
 
     private reset(){

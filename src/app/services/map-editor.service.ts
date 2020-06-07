@@ -87,9 +87,9 @@ export class MapEditorService {
         return this.http.get(`${environment.baseUrl}/themes/${id}`);
     }
 
-    saveMapCustomization(payload: any) {
-        console.log(this.createMapToSave());
-        //return this.http.post(`${environment.baseUrl}/themes`, payload);
+    saveMapCustomization() {
+        console.log();
+        return this.http.post(`${environment.baseUrl}/map`, {config: this.createMapToSave()});
     }
 
     getFullCustomConfig() {
