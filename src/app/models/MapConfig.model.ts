@@ -2,13 +2,16 @@ import { MapProperty } from '../map-utilities/map-property.class';
 import { MapTheme } from './MapTheme.model';
 
 export class MapConfig {
-    parentMapId: string;
-    mainOptions: any;
+    // tslint:disable-next-line: variable-name
     selectedSlidersValues: {
         label: number,
         landmark: number,
         road: number
     };
-    theme: MapTheme;
-    marker: string;
+    theme?: MapTheme;
+    marker?: string;
+    zoom: number;
+    location: string;
+    coord: {lat: number, lon: number};
+    propertiesArray?: MapProperty[];
 }

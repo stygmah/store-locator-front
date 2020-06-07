@@ -21,15 +21,15 @@ export class GeneralSettingsComponent implements OnInit {
     ngOnInit() {
         this.values = MAP_INITIAL_VALUES;
         this.initialValues = this.formBuilder.group({
-            location: [MAP_INITIAL_VALUES.Closest],
-            zoom: [12],
-            lat: [null],
-            lon: [null]
+            location: [this.mapEditorService.initialValues.value.location],
+            zoom: [this.mapEditorService.initialValues.value.zoom],
+            lat: [this.mapEditorService.initialValues.value.coord.lat],
+            lon: [this.mapEditorService.initialValues.value.coord.lon]
         });
-        this.initialValues.valueChanges.subscribe(formValues => this.pushToMap(formValues))
+        this.initialValues.valueChanges.subscribe(formValues => this.pushToMap(formValues));
     }
 
-    private pushToMap(formValues){
+    private pushToMap(formValues) {
         this.mapEditorService.pushInitialValues({
             zoom: formValues.zoom,
             location: formValues.location,

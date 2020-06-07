@@ -2,10 +2,10 @@
 <div class="container p-5 card-box">
     <h3>Map</h3>
     <!--Row-->
-    <div class="row">
+    <div class="row" *ngIf="!loading">
         <div class="shadow-sm pt-3 mb-3 card col-sm-6 mt-2 map-card">
-            <agm-map [latitude]="lat" [zoom]="zoom" [streetViewControl]="false" [longitude]="lng" [styles]="styles" class="map" >
-                <agm-marker  [latitude]="lat" [longitude]="lng" [iconUrl]="'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'"></agm-marker>
+            <agm-map [latitude]="lat" [zoom]="zoom" [streetViewControl]="false" [longitude]="lon" [styles]="styles" class="map" >
+                <agm-marker  [latitude]="lat" [longitude]="lon" [iconUrl]="'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'"></agm-marker>
               </agm-map>
         </div>
         <div class=" col-sm-6">

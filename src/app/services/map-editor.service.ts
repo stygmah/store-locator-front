@@ -5,13 +5,15 @@ import { MapTheme } from '../models/MapTheme.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SLIDER_VALUES_4 } from '../enums/custom-basic-sliders.enum';
+import { MapConfig } from '../models/MapConfig.model';
+import { MapAtributes } from '../map-utilities/atributes.maps';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapEditorService {
 
-    readonly allMapOptionsArray: BehaviorSubject<MapProperty[]>;
+    readonly mapCustomizationArray: BehaviorSubject<MapProperty[]>;
     public initialValues: BehaviorSubject<any>;
 
     private optionsRefValue: any;
@@ -24,7 +26,7 @@ export class MapEditorService {
     constructor(
         private http: HttpClient
     ) {
-        this.allMapOptionsArray = new BehaviorSubject([]);
+        this.mapCustomizationArray = new BehaviorSubject([]);
         this.initialValues = new BehaviorSubject({});
 
         this.initValues();
@@ -35,7 +37,7 @@ export class MapEditorService {
     ///
     /// Init functions
     ///
-    private initValues () {
+    private initValues() {
         this.slidersRefValue = {};
         this.optionsRefValue = {};
     }
@@ -63,10 +65,14 @@ export class MapEditorService {
     }
 
     ///
+    /// Pushers
     ///
-    ///
-    private updateOptionsArray(arr: MapProperty[]) {
-        this.allMapOptionsArray.next(arr);
+    public updateOptionsArray(arr: MapProperty[]) {
+        this.mapCustomizationArray.next(arr);
+    }
+
+    public pushInitialValues(value: {location: string, zoom: number, coord?: any}) {
+        this.initialValues.next(value);
     }
 
     ///
@@ -77,18 +83,32 @@ export class MapEditorService {
         return this.http.get<MapTheme[]>(`${environment.baseUrl}/themes/page/${page}`);
     }
 
-    getById(id: string) {
+    getThemeById(id: string) {
         return this.http.get(`${environment.baseUrl}/themes/${id}`);
     }
 
     saveMapCustomization(payload: any) {
-        return this.http.post(`${environment.baseUrl}/themes`, payload);
+        console.log(this.createMapToSave());
+        //return this.http.post(`${environment.baseUrl}/themes`, payload);
     }
 
     getFullCustomConfig() {
-        return this.http.get(`${environment.baseUrl}/maps/by_user/true`);
+        return this.http.get<MapConfig>(`${environment.baseUrl}/map`);
     }
 
+    private createMapToSave(): MapConfig {
+        return {
+            selectedSlidersValues: {
+                label: this.slidersRefValue.labels,
+                landmark: this.slidersRefValue.landmarks,
+                road: this.slidersRefValue.roads
+            },
+            zoom: this.initialValues.value.zoom,
+            location: this.initialValues.value.location,
+            coord: this.initialValues.value.coord,
+            propertiesArray: this.mapCustomizationArray.value
+        };
+    }
 
     ///
     /// Slider values
@@ -181,10 +201,5 @@ export class MapEditorService {
         this.landmarkObject = [];
     }
 
-    ///
-    /// Initial Values
-    ///
-    pushInitialValues(value:{location: string, zoom: number, coord?: any}) {
-        this.initialValues.next(value);
-    }
+
 }
