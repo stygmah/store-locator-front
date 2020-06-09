@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
         this.loading = false;
         this.success = false;
         this.resetAlerts();
-
+        console.log(this.registerForm)
         this.registerForm.valueChanges.subscribe(() => {
             this.submitErrors = false;
         });
