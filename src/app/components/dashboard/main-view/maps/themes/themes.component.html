@@ -4,9 +4,18 @@
     <div class="card-header">
         <h5>Select theme</h5>
     </div>
-    <div class="card-body theme-selector-box">
-
+    <div class="card-body theme-selector-box overflow-auto">
+        <mat-radio-group [formControl]="themeSelect">
+            <div class="row" *ngFor="let theme of themes; index as i" [ngClass]="i>0 ? 'mt-3' : ''">      
+                <img class="img-fluid image-theme col-sm-5" src="https://lh3.googleusercontent.com/proxy/LhjLRhFtSG-Y3jSGR5K3h6NsuPdmcUZ9Vw0xeZ4hpXK2YxNk87jbJiWv-xAwXyjbh5Fww-kHN17yyha1UTm2mxoCOEt9zUOgcX0GRPlny9wu">
+                <div class=" form-container col-sm-7">
+                    <label >{{theme.name}}</label>
+                    <mat-radio-button class="ml-auto -display-inline-block radio-map" [value]="theme._id" ></mat-radio-button>
+                </div>
+            </div>
+        </mat-radio-group>
     </div>
 </div>
+<!--TODO: Make pagination instead of overflow-->
 
 

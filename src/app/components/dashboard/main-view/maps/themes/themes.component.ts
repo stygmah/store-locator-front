@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MapTheme } from 'src/app/models/MapTheme.model';
+import { MapEditorService } from 'src/app/services/map-editor.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-themes',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThemesComponent implements OnInit {
 
-  constructor() { }
+    private themes: MapTheme[];
+    private themeSelect: FormControl;
 
-  ngOnInit() {
-  }
+    constructor(private mapEditorService: MapEditorService) { }
+
+    ngOnInit() {
+
+        this.themeSelect = new FormControl(this.mapEditorService.theme.value._id);
+        this.mapEditorService.getThemePage().subscribe((themes) => {
+            this.themes = themes;
+        });
+
+        this.themeSelect.valueChanges.subscribe((theme)=>{
+            this.changeTheme(theme)
+        })
+    }
+
+    private changeTheme(theme) {
+        this.mapEditorService.getThemeById(theme).subscribe((themeFull) => {
+            this.mapEditorService.fullThemePush(themeFull);
+        });
+    }
 
 }

@@ -47,12 +47,17 @@ export class MapsComponent implements OnInit {
 
     private subscriptions() {
         this.mapEditorService.mapCustomizationArray.subscribe((e) => {
-            this.styles = e;
+            this.styles = e && this.mapEditorService.theme.value.properties ? [...this.mapEditorService.theme.value.properties, ...e] : [];
+            console.log(this.styles)
         });
         this.mapEditorService.initialValues.subscribe((e) => {
             this.zoom = e.zoom;
             if (e.coord) { this.setCoords(e.coord); }
         });
+        this.mapEditorService.theme.subscribe((e)=>{
+            this.styles = e.properties ? [...e.properties, ...this.mapEditorService.mapCustomizationArray.value] : [];
+            console.log(this.styles)
+        })
     }
 
 
@@ -75,6 +80,7 @@ export class MapsComponent implements OnInit {
         //marker
 
         //theme
+        this.mapEditorService.fullThemePush(this.initialObject.theme)
     }
 
 

@@ -1,3 +1,18 @@
 .theme-selector-box{
     max-height: 500px;
 }
+
+.image-theme{
+    height:6em;
+    width: 10em;
+    object-fit:cover;
+}
+
+.radio-map{
+    position:absolute;
+    right: 4.5em;
+}
+
+.form-container{
+    padding-top: 2em;
+}

@@ -96,7 +96,6 @@ export class CreateOrEditComponent implements OnInit {
     }
 
     private formSubscriptions() {
-        console.log(this.form.geolocationActive.value)
         this.storeForm.valueChanges.subscribe((val) => this.saveService.changed());
     }
 

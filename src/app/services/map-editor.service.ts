@@ -15,6 +15,7 @@ export class MapEditorService {
 
     readonly mapCustomizationArray: BehaviorSubject<MapProperty[]>;
     public initialValues: BehaviorSubject<any>;
+    public theme: BehaviorSubject<any>;
 
     private optionsRefValue: any;
     private slidersRefValue: any;
@@ -28,6 +29,7 @@ export class MapEditorService {
     ) {
         this.mapCustomizationArray = new BehaviorSubject([]);
         this.initialValues = new BehaviorSubject({});
+        this.theme = new BehaviorSubject({});
 
         this.initValues();
         this.initBlankSliderArrays();
@@ -75,6 +77,10 @@ export class MapEditorService {
         this.initialValues.next(value);
     }
 
+    public fullThemePush(theme) {
+        this.theme.next(theme);
+    }
+
     ///
     /// HTTP REQUESTS
     ///
@@ -88,7 +94,6 @@ export class MapEditorService {
     }
 
     saveMapCustomization() {
-        console.log();
         return this.http.post(`${environment.baseUrl}/map`, {config: this.createMapToSave()});
     }
 
@@ -97,6 +102,7 @@ export class MapEditorService {
     }
 
     private createMapToSave(): MapConfig {
+        console.log(this.theme.value._id)
         return {
             selectedSlidersValues: {
                 label: this.slidersRefValue.labels,
@@ -106,7 +112,8 @@ export class MapEditorService {
             zoom: this.initialValues.value.zoom,
             location: this.initialValues.value.location,
             coord: this.initialValues.value.coord,
-            propertiesArray: this.mapCustomizationArray.value
+            propertiesArray: this.mapCustomizationArray.value,
+            theme: this.theme.value._id
         };
     }
 
@@ -200,6 +207,7 @@ export class MapEditorService {
         this.labelObject = [];
         this.landmarkObject = [];
     }
+    
 
 
 }
