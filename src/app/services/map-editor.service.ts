@@ -102,7 +102,6 @@ export class MapEditorService {
     }
 
     private createMapToSave(): MapConfig {
-        console.log(this.theme.value._id)
         return {
             selectedSlidersValues: {
                 label: this.slidersRefValue.labels,

@@ -26,6 +26,7 @@ export class CreateOrEditComponent implements OnInit {
     private storeId;
     private currentImg: string;
     private initialObject: any;
+    private error: boolean;
 
     private categories: string[];
 
@@ -64,25 +65,25 @@ export class CreateOrEditComponent implements OnInit {
 
     private initForm(values?: any) {
         this.storeForm = this.formBuilder.group({
-            name: [values ? values.name : '', [Validators.required, Validators.email]],
+            name: [values ? values.name : '', [Validators.required]],
             address: [values ? values.address : '', Validators.required],
             country: [values ? values.country : null, Validators.required],
             city: [values ? values.city : '', Validators.required],
-            phone: values ? values.phone : '',
+            phone: [values ? values.phone : ''],
             email: [values ? values.email : '', Validators.email],
             website: values ? values.website : '',
             description: values ? values.description : '',
             geolocationActive: values ? values.geolocationActive : false,
-            lat: values ? values.lat : null,
-            lon: values ? values.lon : null,
+            lat: values ? values.lat : 37.77,
+            lon: values ? values.lon : -122.41,
             categories: [],
         });
     }
 
-    private initInitialObject () {
+    private initInitialObject() {
         this.initialObject = {
             imageUrl: null
-        }
+        };
     }
 
 
@@ -128,7 +129,9 @@ export class CreateOrEditComponent implements OnInit {
     }
 
     private saveStore() {
-        //validate form
+
+        if(this.errorInField().length > 0) return;
+
         this.saveService.loading();
         forkJoin(
             [
@@ -160,7 +163,7 @@ export class CreateOrEditComponent implements OnInit {
     }
 
     private extractFormValues(obj: any): any {
-        let result = {}
+        let result = {};
 
         for (var property in obj) {
             if (obj.hasOwnProperty(property)) {
@@ -181,7 +184,6 @@ export class CreateOrEditComponent implements OnInit {
 
     deleteImg(img: string) {
         if(!this.initialObject || img === this.initialObject.imageUrl || !img) { return; }
-        console.log(img)
         this.uploadService.deleteFile(img).subscribe((res) =>{/**TODO: Handle errors */})
     }
 
@@ -189,6 +191,25 @@ export class CreateOrEditComponent implements OnInit {
         this.form.country.setValue(country);
     }
 
+
+    errorInField(){
+        let errors = [];
+        for (var property in this.form) {
+            if (this.form.hasOwnProperty(property)) {
+                if(this.form[property].status === "INVALID") {
+                    this.form[property].markAsTouched({ onlySelf: true })
+                    errors.push(property);}
+            }
+        }
+        return errors;
+    }
+
+    hasErrorFromArray(errorsArray:string[], error:string) {
+        let found = false;
+        errorsArray.forEach((e) => {
+            found = e === error ? true : found;
+        });
+    }
 
     //End
     ngOnDestroy() {

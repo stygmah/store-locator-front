@@ -18,6 +18,9 @@
                             <mat-label>Name</mat-label>
                             <input matInput  formControlName="name" placeholder="Name">
                             <mat-hint>required</mat-hint>
+                            <mat-error *ngIf="form.name.hasError('required')">
+                                Name is <strong>required</strong>
+                            </mat-error>
                         </mat-form-field>
                     </div>
 
@@ -27,6 +30,9 @@
                             <mat-label>Address</mat-label>
                             <input matInput  formControlName="address" placeholder="Address">
                             <mat-hint>required</mat-hint>
+                            <mat-error *ngIf="form.address.hasError('required')">
+                                Address is <strong>required</strong>
+                            </mat-error>
                         </mat-form-field>
                     </div>
 
@@ -35,8 +41,13 @@
                         <!-- Material input -->
                         <div class="col-lg-6 col-xl-4">
                             <div class="md-form mt-0">
-                                <app-country-picker (recieveValue)="setCountry($event)" [initialValue]="form.country.value.code"  *ngIf="form.country.value"></app-country-picker>
-                                <app-country-picker (recieveValue)="setCountry($event)" [initialValue]="null" *ngIf="!form.country.value"></app-country-picker>
+                                <app-country-picker 
+                                (recieveValue)="setCountry($event)" 
+                                [initialValue]="form.country.value.code"  
+                                *ngIf="form.country.value" 
+                                [requiredMsg]="true"
+                                ></app-country-picker>
+                                <app-country-picker (recieveValue)="setCountry($event)" [initialValue]="null" *ngIf="!form.country.value" [requiredMsg]="true"></app-country-picker>
                             </div>
                         </div>
 
@@ -44,6 +55,9 @@
                                 <mat-label>City</mat-label>
                                 <input matInput  formControlName="city" placeholder="City">
                                 <mat-hint>required</mat-hint>
+                                <mat-error *ngIf="form.city.hasError('required')">
+                                    City is <strong>required</strong>
+                                </mat-error>
                             </mat-form-field>
 
                     </div>
@@ -94,11 +108,11 @@
                         <mat-checkbox class="col-4 pt-3" formControlName="geolocationActive" [(ngModel)]="geolocation">
                             Use fixed coordinates
                         </mat-checkbox>
-                        <mat-form-field class="col-4">
+                        <mat-form-field class="col-4" *ngIf="form.geolocationActive.value">
                             <mat-label>Latitude</mat-label>
                             <input matInput  formControlName="lat" placeholder="Latitue">
                         </mat-form-field>
-                        <mat-form-field class="col-4" >
+                        <mat-form-field class="col-4" *ngIf="form.geolocationActive.value" >
                             <mat-label>Longitude</mat-label>
                             <input matInput  formControlName="lon" placeholder="Longitude" >
                         </mat-form-field>

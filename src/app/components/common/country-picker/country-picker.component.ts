@@ -21,6 +21,8 @@ export class CountryPickerComponent implements OnInit {
 
 
     @Input() initialValue: any;
+    @Input() requiredMsg: boolean;
+    @Input() errorMsg: boolean;
     @Output() recieveValue = new EventEmitter<Country>();
 
 
