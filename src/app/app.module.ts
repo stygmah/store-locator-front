@@ -4,7 +4,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { MatRadioModule } from '@angular/material/radio';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +30,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { GeneralComponent } from './components/dashboard/main-view/account/general/general.component';
 import { BillingInfoComponent } from './components/dashboard/main-view/account/billing-info/billing-info.component';
 import { ApiKeysComponent } from './components/dashboard/main-view/account/api-keys/api-keys.component';
-import { MatFormFieldModule, MatSelectModule, MatInputModule, MatCheckboxModule, MatRadioButton } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule, MatInputModule, MatCheckboxModule, MatDialogModule } from '@angular/material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { environment } from 'src/environments/environment';
@@ -38,7 +38,6 @@ import { GeneralSettingsComponent } from './components/dashboard/main-view/maps/
 import { CustomComponent } from './components/dashboard/main-view/maps/custom/custom.component';
 import { AdvancedCustomizationComponent } from './components/dashboard/main-view/maps/advanced-customization/advanced-customization.component';
 import { SaveOptionsComponent } from './components/common/save-options/save-options.component';
-import { ModalComponent } from './components/common/modal/modal.component';
 import { StoreTableComponent } from './components/dashboard/main-view/stores/store-table/store-table.component';
 import { ThemesComponent } from './components/dashboard/main-view/maps/themes/themes.component';
 import { PinsComponent } from './components/dashboard/main-view/maps/pins/pins.component';
@@ -74,14 +73,13 @@ declarations: [
     CustomComponent,
     AdvancedCustomizationComponent,
     SaveOptionsComponent,
-    ModalComponent,
     StoreTableComponent,
     ThemesComponent,
     PinsComponent,
     CreateOrEditComponent,
     FileDropComponent,
     StoreDisplayComponent,
-    CountryPickerComponent
+    CountryPickerComponent,
 ],
 entryComponents: [
     // Add components for modal here
@@ -106,7 +104,8 @@ imports: [
     MatInputModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatSliderModule
+    MatSliderModule,
+    MatDialogModule
 ],
 providers: [
     {

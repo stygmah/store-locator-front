@@ -4,7 +4,6 @@ import { Establishment } from 'src/app/models/Establishment.model';
 import { StoreTableComponent } from './store-table/store-table.component';
 import { forkJoin, of } from 'rxjs';
 import { UploadService } from 'src/app/services/upload.service';
-import { ModalService } from 'src/app/services/modal.service';
 import { StoreDisplayComponent } from './store-display/store-display.component';
 
 @Component({
@@ -22,7 +21,6 @@ export class StoresComponent implements OnInit {
     constructor(
         private establishmentService: EstablishmentService,
         private uploadService: UploadService,
-        private modalService: ModalService
     ) { }
 
     ngOnInit() {
@@ -50,8 +48,8 @@ export class StoresComponent implements OnInit {
         });
     }
 
-    openEstablishmentModal(establishment) {
-        this.modalService.init(StoreDisplayComponent, {establishment}, null);
-    }
+    // openEstablishmentModal(establishment) {
+    //     this.modalService.init(StoreDisplayComponent, {establishment}, null);
+    // } TODO!!!
 
 }

@@ -5,11 +5,11 @@ import { SAVE_STATE } from 'src/app/enums/save-state.enum';
 import { Establishment } from 'src/app/models/Establishment.model';
 import { EstablishmentService } from 'src/app/services/establishment.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ModalService } from 'src/app/services/modal.service';
 import { FileDropComponent } from 'src/app/components/common/file-drop/file-drop.component';
 import { Subscription, forkJoin, of } from 'rxjs';
 import { UploadService } from 'src/app/services/upload.service';
 import { switchMap, tap , filter } from 'rxjs/operators';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 
 
 @Component({
@@ -37,9 +37,9 @@ export class CreateOrEditComponent implements OnInit {
         private saveService: SaveService,
         private establishmentService: EstablishmentService,
         private router: Router,
-        private modalService: ModalService,
         private uploadService: UploadService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private dialog: MatDialog
     ) { }
 
     ngOnInit() {
@@ -175,7 +175,12 @@ export class CreateOrEditComponent implements OnInit {
 
 
     openUploadImg() {
-        this.modalService.init(FileDropComponent, null, null);
+        const dialogConfig = new MatDialogConfig();
+
+        //dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+
+        this.dialog.open(FileDropComponent, dialogConfig);
     }
 
     getImgUrl(img: string) {
