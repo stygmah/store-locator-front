@@ -28,11 +28,18 @@
 	outline: -webkit-focus-ring-color auto 5px;
 }
 
-h4{
-    text-align: center;
-    display: inline-block;
+.main-container{
+    width: 15em;
+    height: 10em;
 }
-button{
-    margin-left: auto !important;
-    margin-right: auto !important;
+
+label{
+    font-size: 0.8em !important;
+    font-weight:normal;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loading{
+    margin-top: 15% !important;
 }

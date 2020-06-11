@@ -30,7 +30,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { GeneralComponent } from './components/dashboard/main-view/account/general/general.component';
 import { BillingInfoComponent } from './components/dashboard/main-view/account/billing-info/billing-info.component';
 import { ApiKeysComponent } from './components/dashboard/main-view/account/api-keys/api-keys.component';
-import { MatFormFieldModule, MatSelectModule, MatInputModule, MatCheckboxModule, MatDialogModule } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule, MatInputModule, MatCheckboxModule, MatDialogModule, MatProgressBarModule} from '@angular/material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { environment } from 'src/environments/environment';
@@ -105,7 +105,8 @@ imports: [
     MatCheckboxModule,
     MatRadioModule,
     MatSliderModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressBarModule
 ],
 providers: [
     {

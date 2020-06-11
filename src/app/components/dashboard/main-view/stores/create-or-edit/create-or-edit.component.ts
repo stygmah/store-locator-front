@@ -9,7 +9,7 @@ import { FileDropComponent } from 'src/app/components/common/file-drop/file-drop
 import { Subscription, forkJoin, of } from 'rxjs';
 import { UploadService } from 'src/app/services/upload.service';
 import { switchMap, tap , filter } from 'rxjs/operators';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material';
 
 
 @Component({
@@ -31,6 +31,8 @@ export class CreateOrEditComponent implements OnInit {
     private categories: string[];
 
     private geolocation: boolean;
+
+    private modal: MatDialogModule;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -180,7 +182,8 @@ export class CreateOrEditComponent implements OnInit {
         //dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
 
-        this.dialog.open(FileDropComponent, dialogConfig);
+        const modal = this.dialog.open(FileDropComponent, dialogConfig);
+        modal.componentInstance.close.subscribe(() => modal.close());
     }
 
     getImgUrl(img: string) {
@@ -225,5 +228,6 @@ export class CreateOrEditComponent implements OnInit {
     private parseCoord(coord){
         return parseFloat(coord);
     }
+
 
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UploadService } from 'src/app/services/upload.service';
 import { SaveService } from 'src/app/services/save.service';
+
 
 @Component({
   selector: 'app-file-drop',
@@ -13,6 +14,8 @@ export class FileDropComponent implements OnInit {
     loading: boolean = false;
     error: boolean = false;
 
+    @Output() close = new EventEmitter<any>();
+
     constructor(
         private uploadService: UploadService,
         private saveService: SaveService
@@ -24,6 +27,7 @@ export class FileDropComponent implements OnInit {
 
     handleFileInput(files: FileList) {
         this.fileToUpload = files.item(0);
+        this.uploadFile();
     }
 
     uploadFile() {
@@ -33,13 +37,12 @@ export class FileDropComponent implements OnInit {
             this.uploadService.addFileJustUploaded(data.name);
             this.saveService.changed();
             this.loading = false;
-            this.close();
+            this.close.emit('null');
+
         }, error => {
             this.error = true;
             console.log(error);
         });
     }
-    close(){
 
-    }
 }

@@ -1,14 +1,15 @@
-    <div class="py-1 px-5">
-        <div class="row" *ngIf="!fileToUpload" >
-            <p class="text-center mx-auto">Image upload</p>
-        </div>
-        <div *ngIf="!fileToUpload" class="row mt-5">
-            <input  type="file" id="file" (change)="handleFileInput($event.target.files)" class="inputfile">
-            <label for="file" class="btn btn-primary">Select image</label>
-        </div>
-        <div  *ngIf="fileToUpload && !error && !loading">
-            <p>{{fileToUpload ? fileToUpload.name : null}}</p>
-        </div>
-        <button class="btn btn-primary mx-auto" (click)="uploadFile()" *ngIf="fileToUpload && !error && !loading">Upload</button>
-        <span *ngIf="loading">loading...</span>
+<div class="py-1 main-container">
+    <div *ngIf="!fileToUpload" class="row mt-5">
+        <input  type="file" id="file" (change)="handleFileInput($event.target.files)" class="inputfile">
+        <label for="file" class="btn btn-primary align-middle"><i class="fas fa-upload"></i> Select image</label>
     </div>
+    <div class="loading" *ngIf="fileToUpload && !error" >
+        <p class="text-center">Uploading</p>
+        <p class="text-center">{{fileToUpload.name.length > 15 ? fileToUpload.name.slice(0,15)+'...' :  fileToUpload.name}}</p>
+
+    </div>
+    <div  *ngIf="fileToUpload && !loading">
+        <p >Success</p>
+    </div>
+    <mat-progress-bar class="w-100"  mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+</div>
