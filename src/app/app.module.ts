@@ -46,6 +46,10 @@ import { FileDropComponent } from './components/common/file-drop/file-drop.compo
 import { StoreDisplayComponent } from './components/dashboard/main-view/stores/store-display/store-display.component';
 import { CountryPickerComponent } from './components/common/country-picker/country-picker.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppereanceComponent } from './components/dashboard/main-view/settings/appereance/appereance.component';
+import { SearchComponent } from './components/dashboard/main-view/settings/search/search.component';
+import { TextComponent } from './components/dashboard/main-view/settings/text/text.component';
+import { CssComponent } from './components/dashboard/main-view/settings/css/css.component';
 
 @NgModule({
 declarations: [
@@ -80,6 +84,10 @@ declarations: [
     FileDropComponent,
     StoreDisplayComponent,
     CountryPickerComponent,
+    AppereanceComponent,
+    SearchComponent,
+    TextComponent,
+    CssComponent,
 ],
 entryComponents: [
     // Add components for modal here
