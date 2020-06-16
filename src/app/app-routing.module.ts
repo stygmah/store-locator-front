@@ -24,6 +24,11 @@ import { AdvancedCustomizationComponent } from './components/dashboard/main-view
 import { ThemesComponent } from './components/dashboard/main-view/maps/themes/themes.component';
 import { PinsComponent } from './components/dashboard/main-view/maps/pins/pins.component';
 import { CreateOrEditComponent } from './components/dashboard/main-view/stores/create-or-edit/create-or-edit.component';
+import { AppereanceComponent } from './components/dashboard/main-view/settings/appereance/appereance.component';
+import { MainSettingsComponent } from './components/dashboard/main-view/settings/main-settings/main-settings.component';
+import { SearchComponent } from './components/dashboard/main-view/settings/search/search.component';
+import { TextComponent } from './components/dashboard/main-view/settings/text/text.component';
+import { CssComponent } from './components/dashboard/main-view/settings/css/css.component';
 
 const routes: Routes = [
 {
@@ -50,7 +55,19 @@ const routes: Routes = [
         { path: 'edit-store/:id', component: CreateOrEditComponent},
         { path: 'preview', component: PreviewComponent},
         { path: 'installation', component: InstallationComponent},
-        { path: 'settings', component: SettingsComponent},
+        {
+            path: 'settings',
+            component: SettingsComponent,
+            children:
+            [
+                { path: '', redirectTo: 'general', pathMatch: 'full'},
+                { path: 'general', component:  MainSettingsComponent },
+                { path: 'appereance', component: AppereanceComponent },
+                { path: 'search', component: SearchComponent },
+                { path: 'text', component: TextComponent },
+                { path: 'css', component: CssComponent },
+            ]
+        },
         { path: 'help', component: HelpComponent},
         {
             path: 'account',

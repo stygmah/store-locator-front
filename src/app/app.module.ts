@@ -50,6 +50,7 @@ import { AppereanceComponent } from './components/dashboard/main-view/settings/a
 import { SearchComponent } from './components/dashboard/main-view/settings/search/search.component';
 import { TextComponent } from './components/dashboard/main-view/settings/text/text.component';
 import { CssComponent } from './components/dashboard/main-view/settings/css/css.component';
+import { MainSettingsComponent } from './components/dashboard/main-view/settings/main-settings/main-settings.component';
 
 @NgModule({
 declarations: [
@@ -88,6 +89,7 @@ declarations: [
     SearchComponent,
     TextComponent,
     CssComponent,
+    MainSettingsComponent,
 ],
 entryComponents: [
     // Add components for modal here
