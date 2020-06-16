@@ -2,11 +2,17 @@
 
 <div class="container card-box p-5">
     <h2 class="stick-left  mb-4">Account</h2>
-    <nav class="nav mb-2 pl-1">
-        <a class="nav-link" routerLink="general" routerLinkActive="active">General info</a>
-        <a class="nav-link" routerLink="billing" routerLinkActive="active">Billing</a>
-        <a class="nav-link" routerLink="api-keys" routerLinkActive="active">Api Keys</a>
-    </nav>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link nav-head-link" routerLink="general" routerLinkActive="active">General info</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link nav-head-link" routerLink="billing" routerLinkActive="active">Billing</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link nav-head-link" routerLink="api-keys" routerLinkActive="active">Api Keys</a>
+        </li>
+    </ul>
     <div>
         <router-outlet></router-outlet>
     </div>

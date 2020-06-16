@@ -1,3 +1,29 @@
-<p>
-  settings works!
-</p>
+
+
+<div class="container card-box p-5">
+    <h2 class="stick-left  mb-4">Account</h2>
+    <ul class="nav ">
+        <li class="nav-item my-auto">
+            <a class="nav-link nav-head-link" routerLink="general" routerLinkActive="active">General</a>
+        </li>
+        <li class="nav-item my-auto">
+            <a class="nav-link nav-head-link" routerLink="appereance" routerLinkActive="active">Appereance</a>
+        </li>
+        <li class="nav-item my-auto">
+            <a class="nav-link nav-head-link" routerLink="search" routerLinkActive="active">Search & Filters</a>
+        </li>
+        <li class="nav-item my-auto">
+            <a class="nav-link nav-head-link" routerLink="text" routerLinkActive="active">Text & Translations</a>
+        </li>
+        <li class="nav-item my-auto">
+            <a class="nav-link nav-head-link" routerLink="css" routerLinkActive="active">Custom CSS</a>
+        </li>
+        <li class="nav-item ml-auto">
+            <button class="btn btn-outline-primary">Preview</button>
+        </li>
+    </ul>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

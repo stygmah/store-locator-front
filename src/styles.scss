@@ -23,6 +23,9 @@ a:focus{
 .login-logo{
     width: 240px;
 }
+.nav-head-link{
+    padding-left: 0;
+}
 //Forms
 .form-control:focus{
     outline: $base;
