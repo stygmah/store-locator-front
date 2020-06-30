@@ -6,7 +6,7 @@ const apiBaseURI = 'http://localhost:3000'
 export const environment = {
     production: false,
     baseUrl: apiBaseURI,
-    googleDevAPIKey: 'AIzaSyCPMmNaAsj4K4OS0hWNVF5T1xzrSKu0154',
+    googleDevAPIKey: '',
     imgUrl: `${apiBaseURI}/img/`,
 };
 
